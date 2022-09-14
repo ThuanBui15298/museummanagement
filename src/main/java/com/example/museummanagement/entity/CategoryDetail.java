@@ -23,4 +23,12 @@ public class CategoryDetail extends  BaseTimeModel<Long> {
 
     @JoinColumn(name = "category_id")
     private Long categoryId;
+
+    private  String title;
+
+    private String content;
+
+    private String description;
+
+
 }

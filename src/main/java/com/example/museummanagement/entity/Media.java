@@ -6,20 +6,24 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "synthetic")
-public class Synthetic extends BaseTimeModel<Long>{
+@Table(name="media")
+public class Media extends BaseTimeModel<Long>{
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String objectType;
+
+    private String link;
+
     private Integer type;
 
-    private  String name;
+    private  Long albumId;
 
-    private  String title;
+    private  Long videoId;
 
-    private String content;
 
-    private Long categoryId;
 
 }
