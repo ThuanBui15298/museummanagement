@@ -1,32 +1,30 @@
 package com.example.museummanagement.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 @MappedSuperclass
-@Getter
-@Setter
-public class BaseTimeModel {
+@Data
+public class BaseTimeModel<L extends Number> {
 
     @CreationTimestamp
     @Column(name = "create_Time")
-    private LocalDateTime creatDate;
+    private Date creatDate;
 
     @UpdateTimestamp
     @Column(name = "modified_date")
-    private LocalDateTime modifiedDate;
+    private Date modifiedDate;
 
     @Column(name = "update_at")
-    private LocalDateTime UpdateBy;
+    private String UpdateBy;
 
     @Column(name = "status")
-    private LocalDateTime status;
+    private Integer status;
 
 }
