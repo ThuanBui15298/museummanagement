@@ -16,7 +16,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     Optional<Category> findByIdAndStatus(Long id, Integer status);
 
-    List<Category> findAllByIdInAndStatus( List<Long> id, Integer status);
+    List<Category> findAllByIdInAndStatus(List<Long> id, Integer status);
 
     @Query(value = "SELECT * FROM category c WHERE c.name = :name ", nativeQuery = true)
     Page<Category> getAllCategory(@Param("name") String name, Pageable pageable) ;

@@ -12,39 +12,30 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
-
 import javax.transaction.Transactional;
-
 import java.util.*;
 
 
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-
     private final CategoryRepository categoryRepository;
-
     private final CategoryDetailRepository categoryDetailRepository;
-
     private final String CATEGORY = "category";
-
-
     @Transactional
     @Override
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
         Optional<Category> cat = categoryRepository.findByName(categoryDTO.getName());
         Category category = new Category();
-        if (null == cat) {
+        if ( cat.isEmpty() ) {
             category.setName(categoryDTO.getName());
             categoryRepository.save(category);
-        } else {
-            System.out.println("da ton tai san pham");
-        }
 
+        } else {
+            System.out.println("");
+        }
         return categoryDTO;
     }
-
 
     @Override
     @Transactional
@@ -59,10 +50,10 @@ public class CategoryServiceImpl implements CategoryService {
                 cat.setName(categoryDTO.getName());
                 categoryRepository.save(cat);
             } else {
-                System.out.println("San pham da ton tai");
+                System.out.println("");
             }
         } else {
-            System.out.println("Lỗi không update được CSDL");
+            System.out.println("");
         }
         return categoryDTO;
     }
@@ -100,9 +91,6 @@ public class CategoryServiceImpl implements CategoryService {
         result.put(CATEGORY, categories);
         return result;
     }
-
-
-
-    }
+}
 
 
