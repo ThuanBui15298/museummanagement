@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "synthetic")
-public class Synthetic extends BaseTimeModel<Long>{
+public class Synthetic extends BaseTimeModel{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

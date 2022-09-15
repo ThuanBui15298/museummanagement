@@ -11,7 +11,7 @@ import java.util.Date;
 
 @MappedSuperclass
 @Data
-public class BaseTimeModel<L extends Number> {
+public class BaseTimeModel {
 
     @CreationTimestamp
     @Column(name = "create_Time")

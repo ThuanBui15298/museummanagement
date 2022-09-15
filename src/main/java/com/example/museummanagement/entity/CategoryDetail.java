@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name="category_detail")
-public class CategoryDetail extends  BaseTimeModel<Long> {
+public class CategoryDetail extends  BaseTimeModel {
 
 
     @Id

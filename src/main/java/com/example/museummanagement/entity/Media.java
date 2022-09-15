@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name="media")
-public class Media extends BaseTimeModel<Long>{
+public class Media extends BaseTimeModel{
 
 
     @Id

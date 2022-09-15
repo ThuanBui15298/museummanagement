@@ -2,16 +2,16 @@ package com.example.museummanagement.service.impl;
 
 import com.example.museummanagement.dto.CategoryDTO;
 import com.example.museummanagement.entity.Category;
-import com.example.museummanagement.entity.CategoryDetail;
-import com.example.museummanagement.repository.CategoryDetailRepository;
 import com.example.museummanagement.repository.CategoryRepository;
 import com.example.museummanagement.service.CategoryService;
 import com.example.museummanagement.ulti.Constants;
+import com.openpojo.business.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import lombok.SneakyThrows;
+import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -20,77 +20,74 @@ import java.util.*;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
-    private final CategoryDetailRepository categoryDetailRepository;
-    private final String CATEGORY = "category";
+
     @Transactional
     @Override
-    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) throws Exception {
+        validRequest(categoryDTO);
         Optional<Category> cat = categoryRepository.findByName(categoryDTO.getName());
         Category category = new Category();
-        if ( cat.isEmpty() ) {
+        if (cat.isEmpty()) {
             category.setName(categoryDTO.getName());
+            category.setStatus(Constants.STATUS_ACTIVE);
             categoryRepository.save(category);
-
         } else {
-            System.out.println("");
+            throw new MessageDescriptorFormatException("Name da ton tai");
         }
         return categoryDTO;
     }
 
+    @SneakyThrows
     @Override
     @Transactional
     public CategoryDTO updateCategory(CategoryDTO categoryDTO, Long id) {
-
-        Optional<Category> category = categoryRepository.findByIdAndStatus(categoryDTO.getId(), Constants.STATUS_ACTIVE);
+        validRequest(categoryDTO);
+        Optional<Category> category = categoryRepository.findById(id);
         Category cat = category.get();
-        if(category.isPresent()) {
+        if (category.isPresent()) {
             Optional<Category> categoryName = categoryRepository.findByName(categoryDTO.getName());
-
-            if (null == categoryName) {
+            if (categoryName.isEmpty()) {
                 cat.setName(categoryDTO.getName());
+                cat.setStatus(Constants.STATUS_ACTIVE);
                 categoryRepository.save(cat);
             } else {
-                System.out.println("");
+                throw new MessageDescriptorFormatException("Name Danh muc da ton tai");
             }
         } else {
-            System.out.println("");
+            throw new MessageDescriptorFormatException("Id khong ton tai");
         }
         return categoryDTO;
     }
 
-    @Override
-    public Page<Category> getAllCategory(Pageable pageable, String name) {
-        Page<Category> listCate = categoryRepository.getAllCategory(name, pageable);
-        return listCate;
-    }
-
+    @SneakyThrows
     @Transactional
     @Override
-    public Map<String, Object> deleteCategory(List<Long> id) {
-        List<Category> categories = categoryRepository.findAllByIdInAndStatus (id, Constants.STATUS_ACTIVE);
+    public CategoryDTO deleteCategory(CategoryDTO categoryDTO, Long id) {
+        List<Category> categories = categoryRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(categories)) {
-            System.out.println("category code exits");
+            throw new MessageDescriptorFormatException("Khong ton tai");
         }
         for (Category category : categories) {
             category.setStatus(Constants.STATUS_INACTIVE);
             category.setModifiedDate(new Date());
             categoryRepository.save(category);
         }
-        List<CategoryDetail> categoryDetails = categoryDetailRepository.findAllByIdInAndStatus(id, Constants.STATUS_ACTIVE);
-        if (CollectionUtils.isEmpty(categoryDetails)) {
-            System.out.println("category code exits");
-        }
-
-        for (CategoryDetail categoryDetail : categoryDetails) {
-            categoryDetail.setStatus(Constants.STATUS_INACTIVE);
-            categoryDetail.setModifiedDate(new Date());
-            categoryDetailRepository.save(categoryDetail);
-        }
-
-        Map<String, Object> result = new HashMap<>();
-        result.put(CATEGORY, categories);
-        return result;
+        return categoryDTO;
     }
+
+    @Override
+    public Iterable<Category> findAll() {
+        return categoryRepository.findAll();
+    }
+
+    @SneakyThrows
+    private void validRequest(CategoryDTO categoryDTO) {
+        if (categoryDTO == null) {
+            throw new MessageDescriptorFormatException("Request invalid");
+        }
+
+    }
+
 }
 
 

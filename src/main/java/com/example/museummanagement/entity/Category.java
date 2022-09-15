@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="category")
-public class Category extends  BaseTimeModel<Long>{
+public class Category extends  BaseTimeModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,4 +40,6 @@ public class Category extends  BaseTimeModel<Long>{
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

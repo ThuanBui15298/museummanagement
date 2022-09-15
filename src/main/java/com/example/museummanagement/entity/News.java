@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "news")
-public class News extends BaseTimeModel<Long> {
+public class News extends BaseTimeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
