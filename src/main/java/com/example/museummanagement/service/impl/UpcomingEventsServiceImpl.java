@@ -64,7 +64,7 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
                 upcomingEvents.setStatus(Constants.STATUS_ACTIVE);
                 upcomingEventsRepository.save(upcomingEvents);
             } else {
-                throw new MessageDescriptorFormatException("Name muc da ton tai");
+                throw new MessageDescriptorFormatException("Name da ton tai");
             }
         } else {
             throw new MessageDescriptorFormatException("Id khong ton tai");

@@ -61,7 +61,7 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
                 featuredNews.setStatus(Constants.STATUS_ACTIVE);
                 featuredNewsRepository.save(featuredNews);
             } else {
-                throw new MessageDescriptorFormatException("Name muc da ton tai");
+                throw new MessageDescriptorFormatException("Name da ton tai");
             }
         } else {
             throw new MessageDescriptorFormatException("Id khong ton tai");

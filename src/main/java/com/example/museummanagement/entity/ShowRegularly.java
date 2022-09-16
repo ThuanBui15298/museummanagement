@@ -21,8 +21,6 @@ public class ShowRegularly extends  BaseTimeModel {
 
         private String slug;
 
-        private String description;
-
         private String content;
 
         private Long categoryId;
