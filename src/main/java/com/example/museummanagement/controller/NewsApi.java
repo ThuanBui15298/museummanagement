@@ -7,11 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 @RequestMapping("/news")
 @RequiredArgsConstructor
 public class NewsApi {
@@ -31,15 +30,13 @@ public class NewsApi {
             @RequestBody NewsDTO newsDTO,
             @PathVariable("id") Long id) {
         newsService.updateNews(newsDTO, id);
-        return new ResponseEntity<>(newsDTO, HttpStatus.OK);
+        return new ResponseEntity<>("Update successfully!", HttpStatus.OK);
     }
 
     @PutMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteNews(
-            @RequestBody NewsDTO newsDTO,
-            @PathVariable("id") Long id) {
-        newsService.deleteNews(newsDTO, id);
-        return new ResponseEntity<>("oke", HttpStatus.OK);
+    public ResponseEntity<?> deleteNews(@PathVariable("id") Long id) {
+        newsService.deleteNews(id);
+        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")

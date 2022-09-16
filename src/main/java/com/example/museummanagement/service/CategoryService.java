@@ -14,7 +14,7 @@ public interface CategoryService {
     @Transactional
     CategoryDTO updateCategory(CategoryDTO categoryDTO, Long id)  ;
 
-    CategoryDTO deleteCategory( CategoryDTO categoryDT, Long id) ;
+    void deleteCategory(Long id) ;
 
     Iterable<Category> findAll();
 

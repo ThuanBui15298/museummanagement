@@ -10,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-
-@Controller
+@RestController
 @RequestMapping("/category")
 @RequiredArgsConstructor
 public class CategoryApi {
@@ -31,16 +30,13 @@ public class CategoryApi {
             @RequestBody CategoryDTO categoryDTO,
             @PathVariable("id") Long id) {
         categoryService.updateCategory(categoryDTO, id);
-        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
+        return new ResponseEntity<>("Update successfully!", HttpStatus.OK);
     }
 
     @PutMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteCategory(
-            @RequestBody CategoryDTO categoryDTO,
-            @PathVariable("id") Long id) {
-
-        categoryService.deleteCategory(categoryDTO, id);
-        return new ResponseEntity<>("oke", HttpStatus.OK);
+    public ResponseEntity<?> deleteCategory(@PathVariable("id") Long id) {
+        categoryService.deleteCategory(id);
+        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")
