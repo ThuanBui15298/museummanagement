@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 public interface FeaturedNewsService {
 
     @Transactional
-    FeaturedNewsDTO createFeaturedNews(FeaturedNewsDTO featuredNewsDTO) throws Exception;
+    FeaturedNewsDTO createFeaturedNews(FeaturedNewsDTO featuredNewsDTO);
 
     @Transactional
     FeaturedNewsDTO updateFeaturedNews(FeaturedNewsDTO featuredNewsDTO, Long id)  ;

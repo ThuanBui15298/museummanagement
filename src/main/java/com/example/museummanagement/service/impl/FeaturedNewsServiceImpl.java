@@ -25,7 +25,7 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
     @SneakyThrows
     @Transactional
     @Override
-    public FeaturedNewsDTO createFeaturedNews(FeaturedNewsDTO featuredNewsDTO) throws Exception {
+    public FeaturedNewsDTO createFeaturedNews(FeaturedNewsDTO featuredNewsDTO) {
         validRequest(featuredNewsDTO);
         Optional<FeaturedNews> featuredNewsName = featuredNewsRepository.findByName(featuredNewsDTO.getName());
         FeaturedNews featuredNews = new FeaturedNews();

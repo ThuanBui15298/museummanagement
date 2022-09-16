@@ -2,19 +2,19 @@ package com.example.museummanagement.controller;
 
 import com.example.museummanagement.entity.Videos;
 import com.example.museummanagement.service.VideosService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/videos")
 public class VideosApi {
 
-    @Autowired
-    private VideosService videosService;
+    private final VideosService videosService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createVideos(@RequestBody Videos video) {

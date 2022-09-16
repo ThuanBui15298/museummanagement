@@ -1,6 +1,5 @@
 package com.example.museummanagement.service.impl;
 
-
 import com.example.museummanagement.dto.UpcomingEventsDTO;
 import com.example.museummanagement.entity.UpcomingEvents;
 import com.example.museummanagement.repository.UpcomingEventsRepository;
@@ -26,7 +25,7 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
     @SneakyThrows
     @Transactional
     @Override
-    public UpcomingEventsDTO createUpcomingEvents(UpcomingEventsDTO upcomingEventsDTO) throws Exception {
+    public UpcomingEventsDTO createUpcomingEvents(UpcomingEventsDTO upcomingEventsDTO) {
         validRequest(upcomingEventsDTO);
         Optional<UpcomingEvents> upE = upcomingEventsRepository.findByName(upcomingEventsDTO.getName());
         UpcomingEvents upcomingEvents = new UpcomingEvents();

@@ -16,5 +16,5 @@ public interface MediaService {
 
     void deleteMedia( Long id) ;
 
-    List<Media> findAll();
+    List<Media> getAllMedia();
 }
