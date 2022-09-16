@@ -6,7 +6,6 @@ import com.example.museummanagement.entity.Category;
 import javax.transaction.Transactional;
 
 
-
 public interface CategoryService {
 
     @Transactional

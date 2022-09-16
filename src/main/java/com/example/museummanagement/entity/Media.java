@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name="media")
 public class Media extends BaseTimeModel{
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,7 +22,5 @@ public class Media extends BaseTimeModel{
     private  Long albumId;
 
     private  Long videoId;
-
-
 
 }
