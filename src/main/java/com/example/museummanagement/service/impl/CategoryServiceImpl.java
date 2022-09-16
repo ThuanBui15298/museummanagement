@@ -5,7 +5,6 @@ import com.example.museummanagement.entity.Category;
 import com.example.museummanagement.repository.CategoryRepository;
 import com.example.museummanagement.service.CategoryService;
 import com.example.museummanagement.ulti.Constants;
-import com.openpojo.business.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;

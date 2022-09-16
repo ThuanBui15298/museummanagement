@@ -1,7 +1,6 @@
 package com.example.museummanagement.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 
@@ -26,4 +25,6 @@ public class News extends BaseTimeModel {
     private String content;
 
     private Long categoryId;
+
+
 }
