@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 public interface UpcomingEventsService {
 
     @Transactional
-    UpcomingEventsDTO createUpcomingEvents(UpcomingEventsDTO upcomingEventsDTO) throws Exception;
+    UpcomingEventsDTO createUpcomingEvents(UpcomingEventsDTO upcomingEventsDTO);
 
     @Transactional
     UpcomingEventsDTO updateUpcomingEvents(UpcomingEventsDTO upcomingEventsDTO, Long id)  ;

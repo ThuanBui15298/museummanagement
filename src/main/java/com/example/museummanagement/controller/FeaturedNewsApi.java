@@ -19,7 +19,7 @@ public class FeaturedNewsApi {
 
     @PostMapping(value = "/create")
     public ResponseEntity<?> createFeaturedNews(
-            @RequestBody FeaturedNewsDTO featuredNewsDTO) throws Exception {
+            @RequestBody FeaturedNewsDTO featuredNewsDTO) {
         featuredNewsService.createFeaturedNews(featuredNewsDTO);
         return new ResponseEntity(featuredNewsDTO, HttpStatus.OK);
     }

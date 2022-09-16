@@ -58,7 +58,7 @@ public class MediaServiceImpl implements MediaService {
     public void deleteMedia(Long id) {
         List<Media> media = mediaRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(media)) {
-            throw new MessageDescriptorFormatException("Khong ton tai");
+            throw new MessageDescriptorFormatException(" Khong ton tai");
         }
         for (Media medias : media) {
             medias.setStatus(Constants.STATUS_INACTIVE);
@@ -68,7 +68,7 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
-    public List<Media> findAll() {
+    public List<Media> getAllMedia() {
         return mediaRepository.findAll();
     }
 }
