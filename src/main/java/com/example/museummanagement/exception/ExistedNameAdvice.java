@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ExistedNameAdvice {
+
     @ExceptionHandler(ExistedNameException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String existedNameAdvice(ExistedNameException ex) {
