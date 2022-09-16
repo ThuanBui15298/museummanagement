@@ -4,6 +4,7 @@ import com.example.museummanagement.entity.Videos;
 import com.example.museummanagement.repository.VideosRepository;
 import com.example.museummanagement.service.VideosService;
 import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class VideosServiceImpl implements VideosService {
 
-    @Autowired
-    private VideosRepository videosRepository;
+    private final VideosRepository videosRepository;
 
     @SneakyThrows
     @Override
