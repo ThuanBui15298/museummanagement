@@ -4,6 +4,7 @@ import com.example.museummanagement.entity.Videos;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface VideosService {
@@ -12,7 +13,7 @@ public interface VideosService {
 
     Videos upadateVideo(Videos video, Long id);
 
-    void deleteVideo(Long id);
+    Map<String, Object> deleteVideo(Long id);
 
     List<Videos> getAllVideos();
 }

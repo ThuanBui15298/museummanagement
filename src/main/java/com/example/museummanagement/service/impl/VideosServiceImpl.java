@@ -1,24 +1,27 @@
 package com.example.museummanagement.service.impl;
 
+import com.example.museummanagement.entity.Media;
 import com.example.museummanagement.entity.Videos;
+import com.example.museummanagement.repository.MediaRepository;
 import com.example.museummanagement.repository.VideosRepository;
 import com.example.museummanagement.service.VideosService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class VideosServiceImpl implements VideosService {
 
     private final VideosRepository videosRepository;
+
+    @Autowired
+    private MediaRepository mediaRepository;
 
     @SneakyThrows
     @Override
@@ -59,7 +62,7 @@ public class VideosServiceImpl implements VideosService {
 
     @SneakyThrows
     @Override
-    public void deleteVideo(Long id) {
+    public Map<String, Object> deleteVideo(Long id) {
         List<Videos> videosList = videosRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(videosList)) {
             throw new Exception("Video not exsits");
@@ -69,10 +72,24 @@ public class VideosServiceImpl implements VideosService {
             video.setCreatDate(new Date());
             videosRepository.save(video);
         }
+        List<Media> mediaList = mediaRepository.findByVideoIdAndStatus();
+        if (CollectionUtils.isEmpty(mediaList)) {
+            throw new Exception("Video not exists1");
+        }
+        for (Media media : mediaList) {
+            media.setStatus(Constants.STATUS_INACTIVE);
+            mediaRepository.save(media);
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("video", videosList);
+        return result;
     }
 
     @Override
     public List<Videos> getAllVideos() {
         return videosRepository.findAll();
     }
+
+
 }

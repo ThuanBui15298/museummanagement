@@ -1,5 +1,6 @@
 package com.example.museummanagement.repository;
 
+import com.example.museummanagement.entity.Media;
 import com.example.museummanagement.entity.Videos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
