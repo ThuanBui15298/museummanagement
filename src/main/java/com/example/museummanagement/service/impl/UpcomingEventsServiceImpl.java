@@ -1,9 +1,7 @@
 package com.example.museummanagement.service.impl;
 
 
-import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.UpcomingEventsDTO;
-import com.example.museummanagement.entity.FeaturedNews;
 import com.example.museummanagement.entity.UpcomingEvents;
 import com.example.museummanagement.repository.UpcomingEventsRepository;
 import com.example.museummanagement.service.UpcomingEventsService;
