@@ -1,7 +1,6 @@
 package com.example.museummanagement.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
