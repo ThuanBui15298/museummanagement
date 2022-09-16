@@ -35,7 +35,7 @@ public class VideosApi {
     }
 
     @GetMapping("get-all-videos")
-    public List<Videos> getAllVideos() {
-        return videosService.getAllVideos();
+    public ResponseEntity<List<Videos>> getAllVideos() {
+        return new ResponseEntity<>(videosService.getAllVideos(), HttpStatus.OK);
     }
 }
