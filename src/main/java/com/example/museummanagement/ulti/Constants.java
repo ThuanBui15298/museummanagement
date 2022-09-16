@@ -15,6 +15,7 @@ public class Constants {
 
     public static final Integer TYPE_FEATURED_NEWS = 0;
     public static final Integer TYPE_UPCOMING_EVENTS = 1;
-
+    public static final Integer TYPE_SHOW_REGULARLY = 2;
+    public static final Integer TYPE_THEMATIC_EXHIBITION = 4;
 
 }
