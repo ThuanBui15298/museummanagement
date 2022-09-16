@@ -5,6 +5,7 @@ import com.example.museummanagement.exception.ExistedNameException;
 import com.example.museummanagement.repository.SyntheticRepository;
 import com.example.museummanagement.service.SyntheticService;
 import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,11 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class SyntheticServiceImpl implements SyntheticService {
 
-    @Autowired
-    private SyntheticRepository syntheticRepository;
+
+    private final SyntheticRepository syntheticRepository;
 
     @SneakyThrows
     @Override
