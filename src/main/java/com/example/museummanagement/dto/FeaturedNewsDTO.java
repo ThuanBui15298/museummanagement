@@ -10,8 +10,6 @@ public class FeaturedNewsDTO {
 
     private  String content;
 
-    private String description;
-
     private Integer type;
 
     private String title;

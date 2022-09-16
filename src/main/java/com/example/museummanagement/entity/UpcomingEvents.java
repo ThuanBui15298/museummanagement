@@ -7,7 +7,8 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "news")
-public class FeaturedNews extends BaseTimeModel {
+public class UpcomingEvents extends BaseTimeModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,8 +21,9 @@ public class FeaturedNews extends BaseTimeModel {
 
     private String slug;
 
+    private String description;
+
     private String content;
 
     private Long categoryId;
-
 }

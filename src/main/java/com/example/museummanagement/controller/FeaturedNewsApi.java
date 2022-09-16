@@ -1,19 +1,16 @@
 package com.example.museummanagement.controller;
 
 import com.example.museummanagement.dto.FeaturedNewsDTO;
-import com.example.museummanagement.dto.NewsDTO;
 import com.example.museummanagement.entity.FeaturedNews;
-import com.example.museummanagement.entity.News;
 import com.example.museummanagement.service.FeaturedNewsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/news")
+@RequestMapping("/featuredNews")
 @RequiredArgsConstructor
 public class FeaturedNewsApi {
 
@@ -42,7 +39,7 @@ public class FeaturedNewsApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<FeaturedNews>> getAllNews() {
+    public ResponseEntity<Iterable<FeaturedNews>> getAllUpcomingEvents() {
         return new ResponseEntity<>(featuredNewsService.findAll(), HttpStatus.OK);
     }
 }

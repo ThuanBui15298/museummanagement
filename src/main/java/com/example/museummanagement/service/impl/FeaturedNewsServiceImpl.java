@@ -1,11 +1,8 @@
 package com.example.museummanagement.service.impl;
 
 import com.example.museummanagement.dto.FeaturedNewsDTO;
-import com.example.museummanagement.dto.NewsDTO;
 import com.example.museummanagement.entity.FeaturedNews;
-import com.example.museummanagement.entity.News;
 import com.example.museummanagement.repository.FeaturedNewsRepository;
-import com.example.museummanagement.repository.NewsRepository;
 import com.example.museummanagement.service.FeaturedNewsService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
@@ -30,12 +27,11 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
     @Override
     public FeaturedNewsDTO createFeaturedNews(FeaturedNewsDTO featuredNewsDTO) throws Exception {
         validRequest(featuredNewsDTO);
-        Optional<FeaturedNews> feN = featuredNewsRepository.findByName(featuredNewsDTO.getName());
+        Optional<FeaturedNews> featuredNewsName = featuredNewsRepository.findByName(featuredNewsDTO.getName());
         FeaturedNews featuredNews = new FeaturedNews();
-        if (feN.isEmpty()) {
+        if (featuredNewsName.isEmpty()) {
             featuredNews.setName(featuredNewsDTO.getName());
             featuredNews.setContent(featuredNewsDTO.getContent());
-            featuredNews.setDescription(featuredNewsDTO.getDescription());
             featuredNews.setType(Constants.TYPE_FEATURED_NEWS);
             featuredNews.setTitle(featuredNewsDTO.getTitle());
             featuredNews.setSlug(featuredNewsDTO.getSlug());
@@ -55,11 +51,10 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
         Optional<FeaturedNews> feN = featuredNewsRepository.findById(id);
         FeaturedNews featuredNews = feN.get();
         if (feN.isPresent()) {
-            Optional<FeaturedNews> featuredNewsOptional = featuredNewsRepository.findByName(featuredNewsDTO.getName());
-            if (featuredNewsOptional.isEmpty()) {
+            Optional<FeaturedNews> featuredNewsName = featuredNewsRepository.findByName(featuredNewsDTO.getName());
+            if (featuredNewsName.isEmpty()) {
                 featuredNews.setName(featuredNewsDTO.getName());
                 featuredNews.setContent(featuredNewsDTO.getContent());
-                featuredNews.setDescription(featuredNewsDTO.getDescription());
                 featuredNews.setType(Constants.TYPE_FEATURED_NEWS);
                 featuredNews.setTitle(featuredNewsDTO.getTitle());
                 featuredNews.setSlug(featuredNewsDTO.getSlug());
@@ -91,7 +86,6 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
 
     @Override
     public Iterable<FeaturedNews> findAll() {
-
         return featuredNewsRepository.findAll();
     }
 
