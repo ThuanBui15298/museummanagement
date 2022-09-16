@@ -30,14 +30,13 @@ public class CategoryApi {
             @RequestBody CategoryDTO categoryDTO,
             @PathVariable("id") Long id) {
         categoryService.updateCategory(categoryDTO, id);
-        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
+        return new ResponseEntity<>("Update successfully!", HttpStatus.OK);
     }
 
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable("id") Long id) {
-
         categoryService.deleteCategory(id);
-        return new ResponseEntity<>("oke", HttpStatus.OK);
+        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")

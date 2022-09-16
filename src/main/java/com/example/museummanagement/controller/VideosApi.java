@@ -25,7 +25,7 @@ public class VideosApi {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateVideos(@RequestBody Videos video, @PathVariable("id") Long id) {
         videosService.upadateVideo(video, id);
-        return new ResponseEntity<>("Update succesfully!", HttpStatus.OK);
+        return new ResponseEntity<>("Update successfully!", HttpStatus.OK);
     }
 
     @PutMapping("/delete/{id}")

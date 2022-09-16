@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -50,7 +51,7 @@ public class VideosServiceImpl implements VideosService {
                 throw new Exception("Name existed!");
             }
         } else {
-            throw new Exception("Video id not exist!");
+            throw new NoSuchElementException();
         }
         return video;
     }

@@ -24,13 +24,13 @@ public class AlbumApi {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateAlbum(@PathVariable("id") Long id, @RequestBody Album album) {
         albumService.updateAlbum(album,id);
-        return new ResponseEntity<>(album, HttpStatus.OK);
+        return new ResponseEntity<>("Update successfully!", HttpStatus.OK);
     }
 
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteAlbum(@PathVariable("id") Long id) {
         albumService.deleteAlbum(id);
-        return new ResponseEntity<>("Ok", HttpStatus.OK);
+        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")
