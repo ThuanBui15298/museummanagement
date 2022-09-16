@@ -35,6 +35,7 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
             featuredNews.setType(Constants.TYPE_FEATURED_NEWS);
             featuredNews.setTitle(featuredNewsDTO.getTitle());
             featuredNews.setSlug(featuredNewsDTO.getSlug());
+            featuredNews.setSlug(featuredNewsDTO.getAuthor());
             featuredNews.setStatus(Constants.STATUS_ACTIVE);
             featuredNewsRepository.save(featuredNews);
         } else {
@@ -58,6 +59,7 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
                 featuredNews.setType(Constants.TYPE_FEATURED_NEWS);
                 featuredNews.setTitle(featuredNewsDTO.getTitle());
                 featuredNews.setSlug(featuredNewsDTO.getSlug());
+                featuredNews.setSlug(featuredNewsDTO.getAuthor());
                 featuredNews.setStatus(Constants.STATUS_ACTIVE);
                 featuredNewsRepository.save(featuredNews);
             } else {

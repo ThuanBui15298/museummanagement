@@ -38,6 +38,7 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
             upcomingEvents.setType(Constants.TYPE_UPCOMING_EVENTS);
             upcomingEvents.setTitle(upcomingEventsDTO.getTitle());
             upcomingEvents.setSlug(upcomingEventsDTO.getSlug());
+            upcomingEvents.setSlug(upcomingEventsDTO.getAuthor());
             upcomingEvents.setStatus(Constants.STATUS_ACTIVE);
             upcomingEventsRepository.save(upcomingEvents);
         } else {
@@ -61,6 +62,7 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
                 upcomingEvents.setType(Constants.TYPE_UPCOMING_EVENTS);
                 upcomingEvents.setTitle(upcomingEventsDTO.getTitle());
                 upcomingEvents.setSlug(upcomingEventsDTO.getSlug());
+                upcomingEvents.setSlug(upcomingEventsDTO.getAuthor());
                 upcomingEvents.setStatus(Constants.STATUS_ACTIVE);
                 upcomingEventsRepository.save(upcomingEvents);
             } else {

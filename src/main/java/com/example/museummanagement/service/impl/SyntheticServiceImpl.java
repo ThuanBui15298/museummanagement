@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -75,11 +76,7 @@ public class SyntheticServiceImpl implements SyntheticService {
             throw new NoSuchElementException("Not found synthetic");
         }
         for (Synthetic synthetic: syntheticList) {
-            synthetic.setType(synthetic.getType());
-            synthetic.setName(synthetic.getName());
-            synthetic.setTitle(synthetic.getTitle());
-            synthetic.setContent(synthetic.getContent());
-            synthetic.setCategoryId(synthetic.getCategoryId());
+            synthetic.setCreatDate(new Date());
             synthetic.setStatus(Constants.STATUS_INACTIVE);
             syntheticRepository.save(synthetic);
         }

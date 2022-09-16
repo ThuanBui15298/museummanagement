@@ -17,7 +17,7 @@ public class VideosApi {
     private VideosService videosService;
 
     @PostMapping("/create")
-    public ResponseEntity<?>createVideos(@RequestBody Videos video) {
+    public ResponseEntity<?> createVideos(@RequestBody Videos video) {
         videosService.createVideo(video);
         return new ResponseEntity<>(video, HttpStatus.OK);
     }
