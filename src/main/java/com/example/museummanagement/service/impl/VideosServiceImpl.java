@@ -25,7 +25,7 @@ public class VideosServiceImpl implements VideosService {
     public Videos createVideo(Videos video) {
         Optional<Videos> optionalVideos = videosRepository.findByName(video.getName());
         Videos videos = new Videos();
-        if(optionalVideos.isEmpty()) {
+        if (optionalVideos.isEmpty()) {
             videos.setName(video.getName());
             videos.setSlug(video.getSlug());
             videos.setStatus(Constants.STATUS_ACTIVE);
@@ -64,7 +64,7 @@ public class VideosServiceImpl implements VideosService {
         if (CollectionUtils.isEmpty(videosList)) {
             throw new Exception("Video not exsits");
         }
-        for (Videos video: videosList) {
+        for (Videos video : videosList) {
             video.setStatus(Constants.STATUS_INACTIVE);
             video.setCreatDate(new Date());
             videosRepository.save(video);
