@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -64,9 +65,8 @@ public class VideosServiceImpl implements VideosService {
             throw new Exception("Video not exsits");
         }
         for (Videos video: videosList) {
-            video.setName(video.getName());
-            video.setSlug(video.getSlug());
             video.setStatus(Constants.STATUS_INACTIVE);
+            video.setCreatDate(new Date());
             videosRepository.save(video);
         }
     }

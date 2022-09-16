@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/featuredNews")
+@RequestMapping("/feature-news")
 @RequiredArgsConstructor
 public class FeaturedNewsApi {
 

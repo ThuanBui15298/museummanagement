@@ -17,4 +17,6 @@ public class UpcomingEventsDTO {
 
     private String slug;
 
+    private String author;
+
 }
