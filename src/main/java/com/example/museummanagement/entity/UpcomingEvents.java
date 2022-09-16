@@ -26,4 +26,6 @@ public class UpcomingEvents extends BaseTimeModel {
     private String content;
 
     private Long categoryId;
+
+    private  String author;
 }
