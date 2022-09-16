@@ -14,7 +14,7 @@ public interface AlbumService {
     @Transactional
     Album updateAlbum(Album album, Long id);
 
-    Album deleteAlbum(Album album, Long id);
+    void deleteAlbum(Long id);
 
     List<Album> getALlAlbum();
 }

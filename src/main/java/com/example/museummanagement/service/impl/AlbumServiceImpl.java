@@ -43,7 +43,7 @@ public class AlbumServiceImpl implements AlbumService {
     @Transactional
     public Album updateAlbum(Album album, Long id) {
         Optional<Album> optional = albumRepository.findById(id);
-        Album album1 = new Album();
+        Album album1 = optional.get();
         if (optional.isPresent()) {
             Optional<Album> optional1 = albumRepository.findByName(album.getName());
             if (optional1.isEmpty()) {
@@ -62,7 +62,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     @SneakyThrows
     @Override
-    public Album deleteAlbum(Album album, Long id) {
+    public void deleteAlbum(Long id) {
         List<Album> albumList = albumRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if(CollectionUtils.isEmpty(albumList)) {
             throw new Exception("Can not found!");
@@ -72,7 +72,6 @@ public class AlbumServiceImpl implements AlbumService {
             album1.setCreatDate(new Date());
             albumRepository.save(album1);
         }
-        return album;
     }
 
     @Override

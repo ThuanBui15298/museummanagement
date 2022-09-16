@@ -14,7 +14,7 @@ public interface NewsService {
     @Transactional
     NewsDTO updateNews(NewsDTO newsDTO, Long id)  ;
 
-    NewsDTO deleteNews( NewsDTO newsDTO, Long id) ;
+    void deleteNews(Long id) ;
 
     Iterable<News> findAll();
 

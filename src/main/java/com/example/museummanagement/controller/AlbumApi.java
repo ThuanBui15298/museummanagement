@@ -28,8 +28,8 @@ public class AlbumApi {
     }
 
     @PutMapping("/delete/{id}")
-    public ResponseEntity<?> deleteAlbum(@PathVariable("id") Long id, @RequestBody Album album) {
-        albumService.deleteAlbum(album, id);
+    public ResponseEntity<?> deleteAlbum(@PathVariable("id") Long id) {
+        albumService.deleteAlbum(id);
         return new ResponseEntity<>("Ok", HttpStatus.OK);
     }
 

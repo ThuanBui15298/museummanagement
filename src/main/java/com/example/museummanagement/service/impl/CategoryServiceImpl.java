@@ -61,7 +61,7 @@ public class CategoryServiceImpl implements CategoryService {
     @SneakyThrows
     @Transactional
     @Override
-    public CategoryDTO deleteCategory(CategoryDTO categoryDTO, Long id) {
+    public void deleteCategory(Long id) {
         List<Category> categories = categoryRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(categories)) {
             throw new MessageDescriptorFormatException("Khong ton tai");
@@ -71,7 +71,6 @@ public class CategoryServiceImpl implements CategoryService {
             category.setModifiedDate(new Date());
             categoryRepository.save(category);
         }
-        return categoryDTO;
     }
 
     @Override

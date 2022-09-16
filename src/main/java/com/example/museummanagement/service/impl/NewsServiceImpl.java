@@ -73,7 +73,7 @@ public class NewsServiceImpl implements NewsService {
     @SneakyThrows
     @Transactional
     @Override
-    public NewsDTO deleteNews(NewsDTO newsDTO, Long id) {
+    public void deleteNews(Long id) {
         List<News> ne = newsRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(ne)) {
             throw new MessageDescriptorFormatException("Khong ton tai");
@@ -83,7 +83,6 @@ public class NewsServiceImpl implements NewsService {
             news.setModifiedDate(new Date());
             newsRepository.save(news);
         }
-        return newsDTO;
     }
 
     @Override

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 @RequestMapping("/news")
 @RequiredArgsConstructor
 public class NewsApi {
@@ -35,10 +35,8 @@ public class NewsApi {
     }
 
     @PutMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteNews(
-            @RequestBody NewsDTO newsDTO,
-            @PathVariable("id") Long id) {
-        newsService.deleteNews(newsDTO, id);
+    public ResponseEntity<?> deleteNews(@PathVariable("id") Long id) {
+        newsService.deleteNews(id);
         return new ResponseEntity<>("oke", HttpStatus.OK);
     }
 
