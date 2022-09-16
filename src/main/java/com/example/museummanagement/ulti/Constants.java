@@ -13,5 +13,11 @@ public class Constants {
     public static final Integer OBJECT_MEDIA_VIDEOS = 1;
 
 
+    public static final Integer TYPE_FEATURED_NEWS= 0;
+
+
+
+
+
 
 }

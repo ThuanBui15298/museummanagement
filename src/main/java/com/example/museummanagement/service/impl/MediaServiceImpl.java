@@ -65,7 +65,6 @@ public class MediaServiceImpl implements MediaService {
             medias.setModifiedDate(new Date());
             mediaRepository.save(medias);
         }
-
     }
 
     @Override

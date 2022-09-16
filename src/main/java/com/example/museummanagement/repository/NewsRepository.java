@@ -1,6 +1,6 @@
 package com.example.museummanagement.repository;
 
-import com.example.museummanagement.entity.Category;
+
 import com.example.museummanagement.entity.News;
 import org.springframework.data.jpa.repository.JpaRepository;
 
