@@ -30,7 +30,7 @@ public class AlbumApi {
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteAlbum(@PathVariable("id") Long id) {
         albumService.deleteAlbum(id);
-        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")

@@ -32,7 +32,7 @@ public class MediaApi {
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteMedia(@PathVariable("id") Long id) {
         mediaService.deleteMedia(id);
-        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("get-all-videos")

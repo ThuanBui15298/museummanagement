@@ -21,7 +21,7 @@ public class BaseTimeModel {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    @Column(name = "update_at")
+    @Column(name = "update_by")
     private String UpdateBy;
 
     @Column(name = "status")
