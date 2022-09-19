@@ -18,6 +18,12 @@ public class Constants {
     public static final Integer TYPE_SHOW_REGULARLY = 2;
     public static final Integer TYPE_THEMATIC_EXHIBITION = 3;
     public static final Integer TYPE_ITINERANT_DISPLAY = 4;
+    public static final Integer TYPE_ARCHAEOLOGICAL_EXCAVATIONS = 5;
+    public static final Integer TYPE_COLLECTING_WORK = 6;
+
+
+
+
 
 
 }
