@@ -39,7 +39,7 @@ public class FeaturedNewsApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<FeaturedNews>> getAllUpcomingEvents() {
+    public ResponseEntity<Iterable<FeaturedNews>> getAllFeaturedNews() {
         return new ResponseEntity<>(featuredNewsService.findAll(), HttpStatus.OK);
     }
 }

@@ -9,8 +9,8 @@ public class Constants {
     public static final Integer MEDIA_IMAGE = 0;
     public static final Integer MEDIA_VIDEOS = 1;
 
-    public static final String OBJECT_MEDIA_ALBUM = "Album";
-    public static final String OBJECT_MEDIA_VIDEOS = "Videos";
+//    public static final String OBJECT_MEDIA_ALBUM = "Album";
+//    public static final String OBJECT_MEDIA_VIDEOS = "Videos";
 
 
     public static final Integer TYPE_FEATURED_NEWS = 0;
