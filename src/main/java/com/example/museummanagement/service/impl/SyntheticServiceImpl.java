@@ -48,17 +48,17 @@ public class SyntheticServiceImpl implements SyntheticService {
     @Transactional
     public Synthetic updateSynthetic(Synthetic synthetic, Long id) {
         Optional<Synthetic> optionalSynthetic = syntheticRepository.findById(id);
-        Synthetic synthetic1 = optionalSynthetic.get();
+        Synthetic sy = optionalSynthetic.get();
         if (optionalSynthetic.isPresent()) {
             Optional<Synthetic> optional = syntheticRepository.findByName(synthetic.getName());
             if (optional.isEmpty()){
-                synthetic1.setType(synthetic.getType());
-                synthetic1.setName(synthetic.getName());
-                synthetic1.setTitle(synthetic.getTitle());
-                synthetic1.setContent(synthetic.getContent());
-                synthetic1.setCategoryId(synthetic.getCategoryId());
-                synthetic1.setStatus(Constants.STATUS_ACTIVE);
-                syntheticRepository.save(synthetic1);
+                sy.setType(synthetic.getType());
+                sy.setName(synthetic.getName());
+                sy.setTitle(synthetic.getTitle());
+                sy.setContent(synthetic.getContent());
+                sy.setCategoryId(synthetic.getCategoryId());
+                sy.setStatus(Constants.STATUS_ACTIVE);
+                syntheticRepository.save(sy);
             } else {
                 throw new ExistedNameException();
             }
@@ -71,7 +71,7 @@ public class SyntheticServiceImpl implements SyntheticService {
     @SneakyThrows
     @Override
     @Transactional
-    public void deteleSynthetic(Long id) {
+    public void deleteSynthetic(Long id) {
         List<Synthetic> syntheticList = syntheticRepository.findALlByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(syntheticList)) {
             throw new NoSuchElementException("Not found synthetic");

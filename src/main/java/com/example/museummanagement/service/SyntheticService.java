@@ -16,7 +16,7 @@ public interface SyntheticService {
     Synthetic updateSynthetic(Synthetic synthetic, Long id);
 
     @Transactional
-    void deteleSynthetic(Long id);
+    void deleteSynthetic(Long id);
 
     List<Synthetic> getAllSynthetic();
 }

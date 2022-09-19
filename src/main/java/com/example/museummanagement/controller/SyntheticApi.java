@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/synthetic")
 public class SyntheticApi {
 
+
     @Autowired
     private SyntheticService syntheticService;
 
@@ -30,7 +31,7 @@ public class SyntheticApi {
 
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteSynthetic(@PathVariable("id") Long id) {
-        syntheticService.deteleSynthetic(id);
+        syntheticService.deleteSynthetic(id);
         return new ResponseEntity<>("Deleted!", HttpStatus.OK);
     }
 

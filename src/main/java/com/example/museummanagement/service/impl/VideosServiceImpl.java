@@ -74,7 +74,7 @@ public class VideosServiceImpl implements VideosService {
         }
         List<Media> mediaList = mediaRepository.findByVideoIdAndStatus();
         if (CollectionUtils.isEmpty(mediaList)) {
-            throw new Exception("Video not exists1");
+            throw new Exception("media not exists");
         }
         for (Media media : mediaList) {
             media.setStatus(Constants.STATUS_INACTIVE);
