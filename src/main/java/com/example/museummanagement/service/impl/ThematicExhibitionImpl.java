@@ -44,6 +44,7 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
         return thematicExhibitionDTO;
     }
 
+
     @SneakyThrows
     @Transactional
     @Override
