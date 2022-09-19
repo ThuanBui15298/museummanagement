@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/thematic-exhibitionApi")
+@RequestMapping("/thematic-exhibition")
 @RequiredArgsConstructor
 public class ThematicExhibitionApi {
 
@@ -33,7 +33,7 @@ public class ThematicExhibitionApi {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> deleteThematicExhibition(@PathVariable("id") Long id) {
         thematicExhibitionService.deleteThematicExhibition(id);
-        return new ResponseEntity<>("Deleted oke!", HttpStatus.OK);
+        return new ResponseEntity<>("Deleted successfully!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")
