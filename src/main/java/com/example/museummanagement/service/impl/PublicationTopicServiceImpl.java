@@ -1,10 +1,7 @@
 package com.example.museummanagement.service.impl;
 
-import com.example.museummanagement.dto.CollectingWorkDTO;
 import com.example.museummanagement.dto.PublicationTopicDTO;
-import com.example.museummanagement.entity.CollectingWork;
 import com.example.museummanagement.entity.PublicationTopic;
-import com.example.museummanagement.repository.CollectingWorkRepository;
 import com.example.museummanagement.repository.PublicationTopicRepository;
 import com.example.museummanagement.service.PublicationTopicService;
 import com.example.museummanagement.ulti.Constants;
