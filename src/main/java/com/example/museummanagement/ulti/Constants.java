@@ -6,12 +6,11 @@ public class Constants {
     public static final Integer STATUS_ACTIVE = 1;
     public static final Integer STATUS_INACTIVE = 0;
 
-    public static final Integer MEDIA_IMAGE = 0;
+    public static final Integer MEDIA_ALBUM_IMAGE = 0;
     public static final Integer MEDIA_VIDEOS = 1;
 
 //    public static final String OBJECT_MEDIA_ALBUM = "Album";
 //    public static final String OBJECT_MEDIA_VIDEOS = "Videos";
-
 
     public static final Integer TYPE_FEATURED_NEWS = 0;
     public static final Integer TYPE_UPCOMING_EVENTS = 1;
@@ -20,7 +19,8 @@ public class Constants {
     public static final Integer TYPE_ITINERANT_DISPLAY = 4;
     public static final Integer TYPE_ARCHAEOLOGICAL_EXCAVATIONS = 5;
     public static final Integer TYPE_COLLECTING_WORK = 6;
-
+    public static final Integer TYPE_PUBLICATION_TOPICS = 7;
+    public static final Integer TYPE_CULTURAL_KNOWLEDGE = 8;
 
 
 
