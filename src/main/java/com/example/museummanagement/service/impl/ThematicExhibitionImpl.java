@@ -53,6 +53,8 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
         Optional<ThematicExhibition> thematicExh = thematicExhibitionRepository.findById(id);
         ThematicExhibition thematicExhibition = thematicExh.get();
         if (thematicExh.isPresent()) {
+
+            // sửa phần update theo name có vẫn cho update
             Optional<ThematicExhibition> thematicExhibitionName = thematicExhibitionRepository.findByName(thematicExhibitionDTO.getName());
             if (thematicExhibitionName.isEmpty()) {
                 thematicExhibition.setName(thematicExhibitionDTO.getName());

@@ -3,7 +3,7 @@ package com.example.museummanagement.dto;
 import lombok.Data;
 
 @Data
-public class FeaturedNewsDTO {
+public class CollectingWorkDTO {
 
     private String name;
 

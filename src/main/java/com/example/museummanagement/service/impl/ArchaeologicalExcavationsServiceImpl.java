@@ -5,6 +5,7 @@ import com.example.museummanagement.entity.ArchaeologicalExcavations;
 import com.example.museummanagement.repository.ArchaeologicalExcavationsRepository;
 import com.example.museummanagement.service.ArchaeologicalExcavationsService;
 import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcavationsService {
 
-    @Autowired
-    private ArchaeologicalExcavationsRepository archaeologicalExcavationsRepository;
+
+    private final ArchaeologicalExcavationsRepository archaeologicalExcavationsRepository;
 
     @SneakyThrows
     @Override
@@ -27,7 +29,7 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
         Optional<ArchaeologicalExcavations> optionalItinerantDisplay = archaeologicalExcavationsRepository.findByName(archaeologicalExcavationsDTO.getName());
         ArchaeologicalExcavations archaeologicalExcavations = new ArchaeologicalExcavations();
         if (optionalItinerantDisplay.isEmpty()){
-            archaeologicalExcavations.setType(Constants.TYPE_ITINERANT_DISPLAY);
+            archaeologicalExcavations.setType(Constants.TYPE_ARCHAEOLOGICAL_EXCAVATIONS);
             archaeologicalExcavations.setName(archaeologicalExcavationsDTO.getName());
             archaeologicalExcavations.setTitle(archaeologicalExcavationsDTO.getTitle());
             archaeologicalExcavations.setSlug(archaeologicalExcavationsDTO.getSlug());
@@ -47,9 +49,9 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
         Optional<ArchaeologicalExcavations> optionalArchaeologicalExcavations = archaeologicalExcavationsRepository.findById(id);
         ArchaeologicalExcavations archaeologicalExcavations = optionalArchaeologicalExcavations.get();
         if (optionalArchaeologicalExcavations.isPresent()) {
-            Optional<ArchaeologicalExcavations> optionalItinerantDisplay = archaeologicalExcavationsRepository.findByName(archaeologicalExcavationsDTO.getName());
-            if (optionalItinerantDisplay.isEmpty()){
-                archaeologicalExcavations.setType(Constants.TYPE_ITINERANT_DISPLAY);
+            Optional<ArchaeologicalExcavations> archaeologicalExcavation = archaeologicalExcavationsRepository.findByName(archaeologicalExcavationsDTO.getName());
+            if (archaeologicalExcavation.isEmpty()){
+                archaeologicalExcavations.setType(Constants.TYPE_ARCHAEOLOGICAL_EXCAVATIONS);
                 archaeologicalExcavations.setName(archaeologicalExcavationsDTO.getName());
                 archaeologicalExcavations.setTitle(archaeologicalExcavationsDTO.getTitle());
                 archaeologicalExcavations.setSlug(archaeologicalExcavationsDTO.getSlug());
@@ -71,12 +73,12 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
     public void deleteArchaeologicalExcavations(Long id) {
         List<ArchaeologicalExcavations> archaeologicalExcavationsList = archaeologicalExcavationsRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(archaeologicalExcavationsList)) {
-            throw new MessageDescriptorFormatException("Khong ton tai");
+            throw new MessageDescriptorFormatException("No existed");
         }
-        for (ArchaeologicalExcavations archaeologicalExcavations1 : archaeologicalExcavationsList) {
-            archaeologicalExcavations1.setStatus(Constants.STATUS_INACTIVE);
-            archaeologicalExcavations1.setModifiedDate(new Date());
-            archaeologicalExcavationsRepository.save(archaeologicalExcavations1);
+        for (ArchaeologicalExcavations archaeologicalExcavations : archaeologicalExcavationsList) {
+            archaeologicalExcavations.setStatus(Constants.STATUS_INACTIVE);
+            archaeologicalExcavations.setModifiedDate(new Date());
+            archaeologicalExcavationsRepository.save(archaeologicalExcavations);
         }
     }
 
