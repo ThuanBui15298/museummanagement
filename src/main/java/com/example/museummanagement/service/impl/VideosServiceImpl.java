@@ -20,6 +20,7 @@ public class VideosServiceImpl implements VideosService {
 
     private final VideosRepository videosRepository;
 
+    public static final String  VIDEO_MEDIA = "Video";
     @Autowired
     private MediaRepository mediaRepository;
 
@@ -82,7 +83,7 @@ public class VideosServiceImpl implements VideosService {
         }
 
         Map<String, Object> result = new HashMap<>();
-        result.put("video", videosList);
+        result.put(VIDEO_MEDIA, videosList);
         return result;
     }
 
