@@ -1,10 +1,7 @@
 package com.example.museummanagement.controller;
 
-import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.PublicationTopicDTO;
-import com.example.museummanagement.entity.FeaturedNews;
 import com.example.museummanagement.entity.PublicationTopic;
-import com.example.museummanagement.service.FeaturedNewsService;
 import com.example.museummanagement.service.PublicationTopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
