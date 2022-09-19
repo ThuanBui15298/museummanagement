@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface AlbumService {
@@ -14,7 +15,7 @@ public interface AlbumService {
     @Transactional
     Album updateAlbum(Album album, Long id);
 
-    void deleteAlbum(Long id);
+    Map<String, Object> deleteAlbum(Long id);
 
     List<Album> getALlAlbum();
 }

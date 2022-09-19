@@ -35,7 +35,7 @@ public class CategoryApi {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable("id") Long id) {
         categoryService.deleteCategory(id);
-        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")

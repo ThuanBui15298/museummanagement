@@ -36,7 +36,7 @@ public class UpcomingEventsApi {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> deleteUpcomingEvents(@PathVariable("id") Long id) {
         upcomingEventsService.deleteUpcomingEvents(id);
-        return new ResponseEntity<>("Deleted oke!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")

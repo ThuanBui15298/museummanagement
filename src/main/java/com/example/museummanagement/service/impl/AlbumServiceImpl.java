@@ -1,8 +1,10 @@
 package com.example.museummanagement.service.impl;
 
 import com.example.museummanagement.entity.Album;
+import com.example.museummanagement.entity.Media;
 import com.example.museummanagement.exception.ExistedNameException;
 import com.example.museummanagement.repository.AlbumRepository;
+import com.example.museummanagement.repository.MediaRepository;
 import com.example.museummanagement.service.AlbumService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.SneakyThrows;
@@ -11,15 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AlbumServiceImpl implements AlbumService {
 
     @Autowired
     private AlbumRepository albumRepository;
+
+    @Autowired
+    private MediaRepository mediaRepository;
+
+    public static final String  ALBUM_MEDIA = "Album";
 
     @SneakyThrows
     @Override
@@ -62,16 +67,30 @@ public class AlbumServiceImpl implements AlbumService {
 
     @SneakyThrows
     @Override
-    public void deleteAlbum(Long id) {
+    public Map<String, Object> deleteAlbum(Long id) {
         List<Album> albumList = albumRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if(CollectionUtils.isEmpty(albumList)) {
             throw new Exception("Can not found!");
         }
-        for (Album album1 : albumList) {
-            album1.setStatus(Constants.STATUS_INACTIVE);
-            album1.setCreatDate(new Date());
-            albumRepository.save(album1);
+        for (Album album : albumList) {
+            album.setStatus(Constants.STATUS_INACTIVE);
+            album.setCreatDate(new Date());
+            albumRepository.save(album);
         }
+
+        List<Media> mediaList = mediaRepository.findByAlbumIdAndStatus();
+        if (CollectionUtils.isEmpty(mediaList)) {
+            throw new Exception("Media not exists");
+        }
+        for (Media media: mediaList) {
+            media.setStatus(Constants.STATUS_INACTIVE);
+            media.setCreatDate(new Date());
+            mediaRepository.save(media);
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put(ALBUM_MEDIA, albumList);
+        return result;
     }
 
     @Override

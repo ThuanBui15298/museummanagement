@@ -35,7 +35,7 @@ public class FeaturedNewsApi {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> deleteFeaturedNews(@PathVariable("id") Long id) {
         featuredNewsService.deleteFeaturedNews(id);
-        return new ResponseEntity<>("Deleted oke!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")

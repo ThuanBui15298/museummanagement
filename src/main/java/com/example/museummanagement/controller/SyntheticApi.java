@@ -32,7 +32,7 @@ public class SyntheticApi {
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteSynthetic(@PathVariable("id") Long id) {
         syntheticService.deleteSynthetic(id);
-        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all-synthetic")

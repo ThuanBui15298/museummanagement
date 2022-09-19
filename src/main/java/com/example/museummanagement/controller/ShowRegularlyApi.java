@@ -32,7 +32,7 @@ public class ShowRegularlyApi {
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteShowRegularly(@PathVariable("id") Long id) {
         showRegularlyService.deleteShowRegularly(id);
-        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("/get-all")

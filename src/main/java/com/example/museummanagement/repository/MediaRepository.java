@@ -14,4 +14,7 @@ public interface MediaRepository extends JpaRepository<Media, Long> {
 
     @Query(value = "SELECT m.* FROM media m JOIN videos v WHERE v.id = m.video_id AND m.status = 1", nativeQuery = true)
     List<Media> findByVideoIdAndStatus();
+
+    @Query(value = "SELECT m.* FROM media m JOIN album a WHERE a.id = m.album_id AND m.status = 1", nativeQuery = true)
+    List<Media> findByAlbumIdAndStatus();
 }

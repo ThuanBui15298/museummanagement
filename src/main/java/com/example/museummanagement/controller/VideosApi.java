@@ -31,7 +31,7 @@ public class VideosApi {
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteVideos(@PathVariable("id") Long id) {
         videosService.deleteVideo(id);
-        return new ResponseEntity<>("Deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
     @GetMapping("get-all-videos")
