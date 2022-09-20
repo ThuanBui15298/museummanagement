@@ -24,6 +24,7 @@ public class Constants {
     public static final Integer TYPE_SIGHTSEEING_GUIDE = 9;
     public static final Integer TYPE_NATIONAL_TREASURES = 10;
     public static final Integer TYPE_COLLECTIONS = 11;
+    public static final Integer TYPE_EDUCATIONAL_ACTIVITIES = 12;
 
     public static final Integer TYPE_OPEN_TIME= 0;
     public static final Integer TYPE_SIGHTSEEING_RULES = 1;
