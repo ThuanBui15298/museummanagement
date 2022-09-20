@@ -45,8 +45,8 @@ public class ItinerantDisplayServiceImpl implements ItinerantDisplayService {
     @Override
     public ItinerantDisplayDTO updateItinerantDisplay(Long id, ItinerantDisplayDTO itinerantDisplayDTO) {
         Optional<ItinerantDisplay> optionalItinerantDisplay = itinerantDisplayRepository.findById(id);
-        ItinerantDisplay itinerant = optionalItinerantDisplay.get();
         if (optionalItinerantDisplay.isPresent()) {
+            ItinerantDisplay itinerant = optionalItinerantDisplay.get();
             Optional<ItinerantDisplay> optional = itinerantDisplayRepository.findByName(itinerantDisplayDTO.getName());
             if (optional.isEmpty()) {
                 itinerant.setType(Constants.TYPE_ITINERANT_DISPLAY);

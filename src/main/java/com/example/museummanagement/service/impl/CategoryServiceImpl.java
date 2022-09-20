@@ -42,8 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDTO updateCategory(CategoryDTO categoryDTO, Long id) {
         validRequest(categoryDTO);
         Optional<Category> category = categoryRepository.findById(id);
-        Category cat = category.get();
         if (category.isPresent()) {
+            Category cat = category.get();
+
             Optional<Category> categoryName = categoryRepository.findByName(categoryDTO.getName());
             if (categoryName.isEmpty()) {
                 cat.setName(categoryDTO.getName());

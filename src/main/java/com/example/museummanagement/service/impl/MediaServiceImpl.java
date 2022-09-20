@@ -40,8 +40,9 @@ public class MediaServiceImpl implements MediaService {
     @Transactional
     public MediaDTO updateMedia(MediaDTO mediaDTO, Long id) {
         Optional<Media> media = mediaRepository.findById(id);
-        Media med = media.get();
         if (media.isPresent()) {
+            Media med = media.get();
+
             med.setLink(mediaDTO.getLink());
             med.setObjectType(mediaDTO.getObjectType());
             med.setType(mediaDTO.getType());

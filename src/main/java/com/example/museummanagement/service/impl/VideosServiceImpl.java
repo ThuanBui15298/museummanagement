@@ -44,8 +44,9 @@ public class VideosServiceImpl implements VideosService {
     @Override
     public Videos upadateVideo(Videos video, Long id) {
         Optional<Videos> optionalVideos = videosRepository.findById(id);
-        Videos videos = optionalVideos.get();
         if (optionalVideos.isPresent()) {
+            Videos videos = optionalVideos.get();
+
             Optional<Videos> optional = videosRepository.findByName(video.getName());
             if (optional.isEmpty()) {
                 videos.setName(video.getName());

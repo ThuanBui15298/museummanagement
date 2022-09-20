@@ -2,7 +2,6 @@ package com.example.museummanagement.service.impl;
 
 import com.example.museummanagement.entity.Album;
 import com.example.museummanagement.entity.Media;
-import com.example.museummanagement.exception.ExistedNameException;
 import com.example.museummanagement.repository.AlbumRepository;
 import com.example.museummanagement.repository.MediaRepository;
 import com.example.museummanagement.service.AlbumService;
@@ -38,7 +37,7 @@ public class AlbumServiceImpl implements AlbumService {
             album1.setStatus(Constants.STATUS_ACTIVE);
             albumRepository.save(album1);
         } else {
-            throw new ExistedNameException();
+            throw new Exception("Name existed!");
         }
         return album;
     }
@@ -48,8 +47,9 @@ public class AlbumServiceImpl implements AlbumService {
     @Transactional
     public Album updateAlbum(Album album, Long id) {
         Optional<Album> optional = albumRepository.findById(id);
-        Album album1 = optional.get();
         if (optional.isPresent()) {
+            Album album1 = optional.get();
+
             Optional<Album> optional1 = albumRepository.findByName(album.getName());
             if (optional1.isEmpty()) {
                 album1.setName(album.getName());
@@ -57,7 +57,7 @@ public class AlbumServiceImpl implements AlbumService {
                 album1.setStatus(Constants.STATUS_ACTIVE);
                 albumRepository.save(album1);
             } else {
-                throw new ExistedNameException();
+                throw new Exception("Name existed!");
             }
         } else {
             throw new Exception("Can not found album with id: " + id);
