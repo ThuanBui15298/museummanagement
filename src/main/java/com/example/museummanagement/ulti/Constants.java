@@ -31,6 +31,7 @@ public class Constants {
     public static final Integer TYPE_GENERAL_INTRODUCTION= 3;
     public static final Integer TYPE_ORGANIZATIONAL_STRUCTURE= 4;
     public static final Integer TYPE_PROFESSIONAL_FUNCTION= 5;
+    public static final Integer TYPE_TYPICAL_ARTIFACTS= 6;
 
 
 
