@@ -11,6 +11,7 @@ import org.hibernate.validator.internal.engine.messageinterpolation.parser.Messa
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
     private final ArchaeologicalExcavationsRepository archaeologicalExcavationsRepository;
 
     @SneakyThrows
+    @Transactional
     @Override
     public ArchaeologicalExcavationsDTO createArchaeologicalExcavations(ArchaeologicalExcavationsDTO archaeologicalExcavationsDTO) {
         Optional<ArchaeologicalExcavations> optionalItinerantDisplay = archaeologicalExcavationsRepository.findByName(archaeologicalExcavationsDTO.getName());
@@ -43,6 +45,7 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public ArchaeologicalExcavationsDTO updateArchaeologicalExcavations(ArchaeologicalExcavationsDTO archaeologicalExcavationsDTO, Long id) {
         Optional<ArchaeologicalExcavations> optionalArchaeologicalExcavations = archaeologicalExcavationsRepository.findById(id);
@@ -68,6 +71,7 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public void deleteArchaeologicalExcavations(Long id) {
         List<ArchaeologicalExcavations> archaeologicalExcavationsList = archaeologicalExcavationsRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);

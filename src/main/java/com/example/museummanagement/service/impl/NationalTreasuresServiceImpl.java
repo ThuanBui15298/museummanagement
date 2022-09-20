@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ public class NationalTreasuresServiceImpl implements NationalTreasuresService {
     private final NationalTreasuresRepository nationalTreasuresRepository;
 
     @SneakyThrows
+    @Transactional
     @Override
     public NationalTreasuresDTO createNationalTreasure(NationalTreasuresDTO nationalTreasuresDTO) {
         Optional<NationalTreasures> optionalNationalTreasures = nationalTreasuresRepository.findByName(nationalTreasuresDTO.getName());
@@ -40,6 +42,7 @@ public class NationalTreasuresServiceImpl implements NationalTreasuresService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public NationalTreasuresDTO updateNationalTreasure(NationalTreasuresDTO nationalTreasuresDTO, Long id) {
         Optional<NationalTreasures> optionalNationalTreasures = nationalTreasuresRepository.findById(id);
@@ -66,6 +69,7 @@ public class NationalTreasuresServiceImpl implements NationalTreasuresService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public void deleteNationalTreasure(Long id) {
         List<NationalTreasures> nationalTreasuresList = nationalTreasuresRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -25,6 +26,7 @@ public class VideosServiceImpl implements VideosService {
     private MediaRepository mediaRepository;
 
     @SneakyThrows
+    @Transactional
     @Override
     public Videos createVideo(Videos video) {
         Optional<Videos> optionalVideos = videosRepository.findByName(video.getName());
@@ -41,6 +43,7 @@ public class VideosServiceImpl implements VideosService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public Videos upadateVideo(Videos video, Long id) {
         Optional<Videos> optionalVideos = videosRepository.findById(id);

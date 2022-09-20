@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ public class TypicalArtifactsServiceImpl implements TypicalArtifactsService {
     private TypicalArtifactsRepository typicalArtifactsRepository;
 
     @SneakyThrows
+    @Transactional
     @Override
     public TypicalArtifacts createTypicalArtifact(TypicalArtifacts typicalArtifacts) {
         Optional<TypicalArtifacts> typicalArtifactsOptional = typicalArtifactsRepository.findByName(typicalArtifacts.getName());
@@ -37,6 +39,7 @@ public class TypicalArtifactsServiceImpl implements TypicalArtifactsService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public TypicalArtifacts updateTypicalArtifact(TypicalArtifacts typicalArtifacts, Long id) {
         Optional<TypicalArtifacts> optionalTypicalArtifacts = typicalArtifactsRepository.findById(id);

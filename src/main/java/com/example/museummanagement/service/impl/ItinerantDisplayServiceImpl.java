@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class ItinerantDisplayServiceImpl implements ItinerantDisplayService {
     private ItinerantDisplayRepository itinerantDisplayRepository;
 
     @SneakyThrows
+    @Transactional
     @Override
     public ItinerantDisplayDTO createItinerantDisplay(ItinerantDisplayDTO itinerantDisplayDTO) {
         Optional<ItinerantDisplay> optionalItinerantDisplay = itinerantDisplayRepository.findByName(itinerantDisplayDTO.getName());
@@ -42,6 +44,7 @@ public class ItinerantDisplayServiceImpl implements ItinerantDisplayService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public ItinerantDisplayDTO updateItinerantDisplay(Long id, ItinerantDisplayDTO itinerantDisplayDTO) {
         Optional<ItinerantDisplay> optionalItinerantDisplay = itinerantDisplayRepository.findById(id);
@@ -68,6 +71,7 @@ public class ItinerantDisplayServiceImpl implements ItinerantDisplayService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public void deleteItinerantDisplay(Long id) {
         List<ItinerantDisplay> itinerantDisplayList = itinerantDisplayRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);

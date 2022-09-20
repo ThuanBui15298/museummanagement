@@ -22,6 +22,7 @@ import java.util.Optional;
 public class ThematicExhibitionImpl implements ThematicExhibitionService {
 
     private final ThematicExhibitionRepository thematicExhibitionRepository;
+
     @SneakyThrows
     @Transactional
     @Override

@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ public class SightSeeingRuleServiceImpl implements SightSeeingRuleService {
     private final SightSeeingRuleRepository sightSeeingRuleRepository;
 
     @SneakyThrows
+    @Transactional
     @Override
     public SightSeeingRuleDTO createSightSeeingRule(SightSeeingRuleDTO sightSeeingRuleDTO) {
         Optional<SightSeeingRule> optionalSightSeeingRule = sightSeeingRuleRepository.findByName(sightSeeingRuleDTO.getName());
@@ -38,6 +40,7 @@ public class SightSeeingRuleServiceImpl implements SightSeeingRuleService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public SightSeeingRuleDTO updateSightSeeingRule(SightSeeingRuleDTO sightSeeingRuleDTO, Long id) {
         Optional<SightSeeingRule> optionalSightSeeingRule = sightSeeingRuleRepository.findById(id);
@@ -61,6 +64,7 @@ public class SightSeeingRuleServiceImpl implements SightSeeingRuleService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public void deleteSightSeeingRule(Long id) {
         List<SightSeeingRule> sightSeeingRuleList = sightSeeingRuleRepository.findAllByIdAndStatus(id,Constants.STATUS_ACTIVE);
