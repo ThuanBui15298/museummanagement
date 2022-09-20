@@ -1,11 +1,8 @@
 package com.example.museummanagement.controller;
 
 
-import com.example.museummanagement.dto.CollectingWorkDTO;
 import com.example.museummanagement.dto.CollectionsDTO;
-import com.example.museummanagement.entity.CollectingWork;
 import com.example.museummanagement.entity.Collections;
-import com.example.museummanagement.service.CollectingWorkService;
 import com.example.museummanagement.service.CollectionsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
