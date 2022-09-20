@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface OpenTimeService {
     @Transactional
-    OpenTime createOpentime(OpenTime openTime);
+    OpenTime createOpenTime(OpenTime openTime);
 
     @Transactional
     OpenTime updateOpenTime(OpenTime openTime, Long id);

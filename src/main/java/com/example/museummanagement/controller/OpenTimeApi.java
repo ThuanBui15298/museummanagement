@@ -18,7 +18,7 @@ public class OpenTimeApi {
 
     @PostMapping("/create")
     public ResponseEntity<?> createOpenTime(@RequestBody OpenTime openTime) {
-        openTimeService.createOpentime(openTime);
+        openTimeService.createOpenTime(openTime);
         return new ResponseEntity<>(openTime, HttpStatus.OK);
     }
 

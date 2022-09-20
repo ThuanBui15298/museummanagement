@@ -20,7 +20,7 @@ public class OpenTimeServiceImpl implements OpenTimeService {
 
     @SneakyThrows
     @Override
-    public OpenTime createOpentime(OpenTime openTime) {
+    public OpenTime createOpenTime(OpenTime openTime) {
         Optional<OpenTime> optionalOpenTime = openTimeRepository.findByName(openTime.getName());
         OpenTime open = new OpenTime();
         if (optionalOpenTime.isEmpty()) {
