@@ -50,8 +50,8 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
     public FeaturedNewsDTO updateFeaturedNews(FeaturedNewsDTO featuredNewsDTO, Long id) {
         validRequest(featuredNewsDTO);
         Optional<FeaturedNews> feN = featuredNewsRepository.findById(id);
-        FeaturedNews featuredNews = feN.get();
         if (feN.isPresent()) {
+            FeaturedNews featuredNews = feN.get();
             Optional<FeaturedNews> featuredNewsName = featuredNewsRepository.findByName(featuredNewsDTO.getName());
             if (featuredNewsName.isEmpty()) {
                 featuredNews.setName(featuredNewsDTO.getName());

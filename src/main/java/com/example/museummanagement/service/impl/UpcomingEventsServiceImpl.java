@@ -50,8 +50,9 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
     public UpcomingEventsDTO updateUpcomingEvents(UpcomingEventsDTO upcomingEventsDTO, Long id) {
         validRequest(upcomingEventsDTO);
         Optional<UpcomingEvents> upE = upcomingEventsRepository.findById(id);
-        UpcomingEvents upcomingEvents = upE.get();
         if (upE.isPresent()) {
+            UpcomingEvents upcomingEvents = upE.get();
+
             Optional<UpcomingEvents> upcomingEventsName = upcomingEventsRepository.findByName(upcomingEventsDTO.getName());
             if (upcomingEventsName.isEmpty()) {
                 upcomingEvents.setName(upcomingEventsDTO.getName());

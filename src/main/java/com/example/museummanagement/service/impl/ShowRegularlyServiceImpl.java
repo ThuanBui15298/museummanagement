@@ -48,8 +48,9 @@ public class ShowRegularlyServiceImpl implements ShowRegularlyService {
     @Transactional
     public ShowRegularlyDTO updateShowRegularly(ShowRegularlyDTO showRegularlyDTO, Long id) {
         Optional<ShowRegularly> optionalShowRegularly = showRegularlyRepository.findById(id);
-        ShowRegularly showRegular = optionalShowRegularly.get();
         if (optionalShowRegularly.isPresent()){
+            ShowRegularly showRegular = optionalShowRegularly.get();
+
             Optional<ShowRegularly> optional = showRegularlyRepository.findByName(showRegularlyDTO.getName());
             if (optional.isEmpty()) {
                 showRegular.setName(showRegularlyDTO.getName());

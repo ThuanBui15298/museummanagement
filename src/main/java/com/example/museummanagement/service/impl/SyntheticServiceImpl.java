@@ -1,7 +1,6 @@
 package com.example.museummanagement.service.impl;
 
 import com.example.museummanagement.entity.Synthetic;
-import com.example.museummanagement.exception.ExistedNameException;
 import com.example.museummanagement.repository.SyntheticRepository;
 import com.example.museummanagement.service.SyntheticService;
 import com.example.museummanagement.ulti.Constants;
@@ -38,7 +37,7 @@ public class SyntheticServiceImpl implements SyntheticService {
             synthetics.setStatus(Constants.STATUS_ACTIVE);
             syntheticRepository.save(synthetics);
         } else {
-            throw new ExistedNameException();
+            throw new Exception("Name existed!");
         }
         return synthetic;
     }
@@ -48,8 +47,9 @@ public class SyntheticServiceImpl implements SyntheticService {
     @Transactional
     public Synthetic updateSynthetic(Synthetic synthetic, Long id) {
         Optional<Synthetic> optionalSynthetic = syntheticRepository.findById(id);
-        Synthetic sy = optionalSynthetic.get();
         if (optionalSynthetic.isPresent()) {
+            Synthetic sy = optionalSynthetic.get();
+
             Optional<Synthetic> optional = syntheticRepository.findByName(synthetic.getName());
             if (optional.isEmpty()){
                 sy.setType(synthetic.getType());
@@ -60,7 +60,7 @@ public class SyntheticServiceImpl implements SyntheticService {
                 sy.setStatus(Constants.STATUS_ACTIVE);
                 syntheticRepository.save(sy);
             } else {
-                throw new ExistedNameException();
+                throw new Exception("Name existed!");
             }
         } else {
             throw new NoSuchElementException();
