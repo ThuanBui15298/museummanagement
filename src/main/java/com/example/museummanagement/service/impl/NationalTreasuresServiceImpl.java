@@ -5,8 +5,8 @@ import com.example.museummanagement.entity.NationalTreasures;
 import com.example.museummanagement.repository.NationalTreasuresRepository;
 import com.example.museummanagement.service.NationalTreasuresService;
 import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class NationalTreasuresServiceImpl implements NationalTreasuresService {
 
-    @Autowired
-    private NationalTreasuresRepository nationalTreasuresRepository;
+    private final NationalTreasuresRepository nationalTreasuresRepository;
 
     @SneakyThrows
     @Override

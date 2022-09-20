@@ -4,8 +4,8 @@ import com.example.museummanagement.entity.OpenTime;
 import com.example.museummanagement.repository.OpenTimeRepository;
 import com.example.museummanagement.service.OpenTimeService;
 import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class OpenTimeServiceImpl implements OpenTimeService {
 
-    @Autowired
-    private OpenTimeRepository openTimeRepository;
+    private final OpenTimeRepository openTimeRepository;
 
     @SneakyThrows
     @Override
