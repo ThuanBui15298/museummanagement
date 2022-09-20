@@ -53,7 +53,7 @@ public class CulturalKnowledgeServiceImpl implements CulturalKnowledgeService {
         if (optionalCulturalKnowledge.isPresent()) {
             Optional<CulturalKnowledge> culturalKnowledgeOpt = culturalKnowledgeRepository.findByName(culturalKnowledgeDTO.getName());
             if (culturalKnowledgeOpt.isEmpty()){
-                culturalKnowledge.setType(Constants.TYPE_COLLECTING_WORK);
+                culturalKnowledge.setType(Constants.TYPE_CULTURAL_KNOWLEDGE);
                 culturalKnowledge.setName(culturalKnowledgeDTO.getName());
                 culturalKnowledge.setTitle(culturalKnowledgeDTO.getTitle());
                 culturalKnowledge.setSlug(culturalKnowledgeDTO.getSlug());

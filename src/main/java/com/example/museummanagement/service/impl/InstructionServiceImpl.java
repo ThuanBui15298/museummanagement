@@ -1,0 +1,86 @@
+package com.example.museummanagement.service.impl;
+
+import com.example.museummanagement.dto.InstructionDTO;
+import com.example.museummanagement.entity.Instruction;
+import com.example.museummanagement.repository.InstructionRepository;
+import com.example.museummanagement.service.InstructionService;
+import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import javax.transaction.Transactional;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+public class InstructionServiceImpl implements InstructionService {
+    private final InstructionRepository instructionRepository;
+
+    @SneakyThrows
+    @Transactional
+    @Override
+    public InstructionDTO createInstruction(InstructionDTO instructionDTO) {
+        Optional<Instruction> optionalInstruction = instructionRepository.findByName(instructionDTO.getName());
+        Instruction instruction = new Instruction();
+        if (optionalInstruction.isEmpty()){
+            instruction.setType(Constants.TYPE_INSTRUCTION);
+            instruction.setName(instructionDTO.getName());
+            instruction.setTitle(instructionDTO.getTitle());
+            instruction.setContent(instructionDTO.getContent());
+            instruction.setStatus(Constants.STATUS_ACTIVE);
+            instructionRepository.save(instruction);
+        } else {
+            throw new MessageDescriptorFormatException("Name existed!");
+        }
+        return instructionDTO;
+    }
+
+    @SneakyThrows
+    @Transactional
+    @Override
+    public InstructionDTO updateInstruction(InstructionDTO instructionDTO, Long id) {
+        Optional<Instruction> optionalInstruction = instructionRepository.findById(id);
+        Instruction instruction = optionalInstruction.get();
+        if (optionalInstruction.isPresent()) {
+            Optional<Instruction> instructionOpt = instructionRepository.findByName(instructionDTO.getName());
+            if (instructionOpt.isEmpty()){
+                instruction.setType(Constants.TYPE_INSTRUCTION);
+                instruction.setName(instructionDTO.getName());
+                instruction.setTitle(instructionDTO.getTitle());
+                instruction.setContent(instructionDTO.getContent());
+                instruction.setStatus(Constants.STATUS_ACTIVE);
+                instructionRepository.save(instruction);
+            } else {
+                throw new MessageDescriptorFormatException("Name existed!");
+            }
+        } else {
+            throw new MessageDescriptorFormatException("Can not found id: " + id);
+        }
+        return instructionDTO;
+    }
+
+    @SneakyThrows
+    @Transactional
+    @Override
+    public void deleteInstruction(Long id) {
+        List<Instruction> instructions = instructionRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
+        if (CollectionUtils.isEmpty(instructions)) {
+            throw new MessageDescriptorFormatException("No existed");
+        }
+        for (Instruction instruction : instructions) {
+            instruction.setStatus(Constants.STATUS_INACTIVE);
+            instruction.setModifiedDate(new Date());
+            instructionRepository.save(instruction);
+        }
+    }
+
+    @Override
+    public List<Instruction> findAllInstruction() {
+        return instructionRepository.findAll();
+    }
+}

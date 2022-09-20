@@ -1,6 +1,5 @@
 package com.example.museummanagement.repository;
 
-import com.example.museummanagement.entity.CollectingWork;
 import com.example.museummanagement.entity.CulturalKnowledge;
 import org.springframework.data.jpa.repository.JpaRepository;
 
