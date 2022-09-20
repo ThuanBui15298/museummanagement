@@ -6,6 +6,7 @@ import com.example.museummanagement.repository.AlbumRepository;
 import com.example.museummanagement.repository.MediaRepository;
 import com.example.museummanagement.service.AlbumService;
 import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,12 @@ import org.springframework.util.CollectionUtils;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class AlbumServiceImpl implements AlbumService {
 
-    @Autowired
-    private AlbumRepository albumRepository;
+    private final AlbumRepository albumRepository;
 
-    @Autowired
-    private MediaRepository mediaRepository;
+    private final MediaRepository mediaRepository;
 
     public static final String  ALBUM_MEDIA = "Album";
 
