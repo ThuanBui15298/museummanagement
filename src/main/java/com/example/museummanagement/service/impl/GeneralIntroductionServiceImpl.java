@@ -1,11 +1,8 @@
 package com.example.museummanagement.service.impl;
 
 import com.example.museummanagement.dto.GeneralIntroductionDTO;
-import com.example.museummanagement.dto.InstructionDTO;
 import com.example.museummanagement.entity.GeneralIntroduction;
-import com.example.museummanagement.entity.Instruction;
 import com.example.museummanagement.repository.GeneralIntroductionRepository;
-import com.example.museummanagement.repository.InstructionRepository;
 import com.example.museummanagement.service.GeneralIntroductionService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
