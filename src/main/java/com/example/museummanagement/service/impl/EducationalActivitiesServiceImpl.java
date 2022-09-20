@@ -51,10 +51,10 @@ public class EducationalActivitiesServiceImpl implements EducationalActivitiesSe
     @Override
     public EducationalActivitiesDTO updateEducationalActivities(EducationalActivitiesDTO educationalActivitiesDTO, Long id) {
         Optional<EducationalActivities> optionalEducationalActivities = educationalActivitiesRepository.findById(id);
-        EducationalActivities educationalActivities = optionalEducationalActivities.get();
         if (optionalEducationalActivities.isPresent()) {
+            EducationalActivities educationalActivities = optionalEducationalActivities.get();
             Optional<EducationalActivities> educationalActivitiesOpt = educationalActivitiesRepository.findByName(educationalActivitiesDTO.getName());
-            if (educationalActivitiesOpt.isEmpty()){
+            if (educationalActivitiesOpt.isEmpty() || educationalActivities.getId().equals(educationalActivitiesOpt.get().getId())){
                 educationalActivities.setType(Constants.TYPE_EDUCATIONAL_ACTIVITIES);
                 educationalActivities.setName(educationalActivitiesDTO.getName());
                 educationalActivities.setTitle(educationalActivitiesDTO.getTitle());

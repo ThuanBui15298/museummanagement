@@ -19,7 +19,7 @@ public class GeneralIntroductionApi {
         public ResponseEntity<?> createGeneralIntroduction(
                 @RequestBody GeneralIntroductionDTO generalIntroductionDTO) {
             generalIntroductionService.createGeneralIntroduction(generalIntroductionDTO);
-            return new ResponseEntity(generalIntroductionDTO, HttpStatus.OK);
+            return new ResponseEntity<>(generalIntroductionDTO, HttpStatus.OK);
         }
 
         @PutMapping(value = "/update/{id}")
