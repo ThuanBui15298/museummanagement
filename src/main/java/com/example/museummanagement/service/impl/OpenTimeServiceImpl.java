@@ -9,6 +9,7 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ public class OpenTimeServiceImpl implements OpenTimeService {
     private final OpenTimeRepository openTimeRepository;
 
     @SneakyThrows
+    @Transactional
     @Override
     public OpenTime createOpenTime(OpenTime openTime) {
         Optional<OpenTime> optionalOpenTime = openTimeRepository.findByName(openTime.getName());
@@ -37,6 +39,7 @@ public class OpenTimeServiceImpl implements OpenTimeService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public OpenTime updateOpenTime(OpenTime openTime, Long id) {
         Optional<OpenTime> optionalOpenTime = openTimeRepository.findById(id);
@@ -61,6 +64,7 @@ public class OpenTimeServiceImpl implements OpenTimeService {
     }
 
     @SneakyThrows
+    @Transactional
     @Override
     public void deleteOpenTime(Long id) {
         List<OpenTime> openTimeList = openTimeRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
