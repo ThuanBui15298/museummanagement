@@ -46,10 +46,10 @@ public class GeneralIntroductionServiceImpl implements GeneralIntroductionServic
     @Override
     public GeneralIntroductionDTO updateGeneralIntroduction(GeneralIntroductionDTO generalIntroductionDTO, Long id) {
         Optional<GeneralIntroduction> optionalGeneralIntroduction = generalIntroductionRepository.findById(id);
-        GeneralIntroduction generalIntroduction = optionalGeneralIntroduction.get();
         if (optionalGeneralIntroduction.isPresent()) {
+            GeneralIntroduction generalIntroduction = optionalGeneralIntroduction.get();
             Optional<GeneralIntroduction> generalIntroductionOpt = generalIntroductionRepository.findByName(generalIntroductionDTO.getName());
-            if (generalIntroductionOpt.isEmpty()) {
+            if (generalIntroductionOpt.isEmpty() || generalIntroduction.getId().equals(generalIntroductionOpt.get().getId())) {
                 generalIntroduction.setType(Constants.TYPE_GENERAL_INTRODUCTION);
                 generalIntroduction.setName(generalIntroductionDTO.getName());
                 generalIntroduction.setTitle(generalIntroductionDTO.getTitle());
