@@ -30,7 +30,7 @@ public class NationalTreasuresServiceImpl implements NationalTreasuresService {
             nationalTreasures.setContent(nationalTreasuresDTO.getContent());
             nationalTreasures.setSlug(nationalTreasuresDTO.getSlug());
             nationalTreasures.setAuthor(nationalTreasuresDTO.getAuthor());
-            nationalTreasures.setType(Constants.TYPE_SHOW_REGULARLY);
+            nationalTreasures.setType(Constants.TYPE_NATIONAL_TREASURES);
             nationalTreasures.setStatus(Constants.STATUS_ACTIVE);
             nationalTreasuresRepository.save(nationalTreasures);
         } else {
@@ -52,7 +52,7 @@ public class NationalTreasuresServiceImpl implements NationalTreasuresService {
                 nationalTreasures.setContent(nationalTreasuresDTO.getContent());
                 nationalTreasures.setSlug(nationalTreasuresDTO.getSlug());
                 nationalTreasures.setAuthor(nationalTreasuresDTO.getAuthor());
-                nationalTreasures.setType(Constants.TYPE_SHOW_REGULARLY);
+                nationalTreasures.setType(Constants.TYPE_NATIONAL_TREASURES);
                 nationalTreasures.setStatus(Constants.STATUS_ACTIVE);
                 nationalTreasuresRepository.save(nationalTreasures);
             } else {
