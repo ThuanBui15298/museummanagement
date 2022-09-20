@@ -43,7 +43,7 @@ public class TypicalArtifactsServiceImpl implements TypicalArtifactsService {
         if (optionalTypicalArtifacts.isPresent()) {
             TypicalArtifacts typicalArtifact = optionalTypicalArtifacts.get();
             Optional<TypicalArtifacts> optional = typicalArtifactsRepository.findByName(typicalArtifacts.getName());
-            if (optional.isEmpty()) {
+            if (optional.isEmpty() || typicalArtifact.getId().equals(optional.get().getId())) {
                 typicalArtifact.setName(typicalArtifacts.getName());
                 typicalArtifact.setTitle(typicalArtifacts.getTitle());
                 typicalArtifact.setContent(typicalArtifacts.getContent());
