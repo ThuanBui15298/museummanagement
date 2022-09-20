@@ -8,7 +8,6 @@ import com.example.museummanagement.service.AlbumService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
