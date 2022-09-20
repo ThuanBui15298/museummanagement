@@ -37,9 +37,7 @@ public class CollectingWorkApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<CollectingWork>> getAllCollectingWork() {
+    public ResponseEntity<Iterable<CollectingWork>> findAllCollectingWork() {
         return new ResponseEntity<>(collectingWorkService.findAllCollectingWork(), HttpStatus.OK);
     }
-
-
 }

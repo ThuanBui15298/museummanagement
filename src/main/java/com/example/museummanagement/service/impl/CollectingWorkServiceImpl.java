@@ -38,7 +38,7 @@ public class CollectingWorkServiceImpl implements CollectingWorkService {
             collectingWork.setStatus(Constants.STATUS_ACTIVE);
             collectingWorkRepository.save(collectingWork);
         } else {
-            throw new Exception("Name existed!");
+            throw new MessageDescriptorFormatException("Name existed!");
         }
         return collectingWorkDTO;
     }
@@ -61,10 +61,10 @@ public class CollectingWorkServiceImpl implements CollectingWorkService {
                 collectingWork.setStatus(Constants.STATUS_ACTIVE);
                 collectingWorkRepository.save(collectingWork);
             } else {
-                throw new Exception("Name existed!");
+                throw new MessageDescriptorFormatException("Name existed!");
             }
         } else {
-            throw new Exception("Can not found id: " + id);
+            throw new MessageDescriptorFormatException("Can not found id: " + id);
         }
         return collectingWorkDTO;
     }
