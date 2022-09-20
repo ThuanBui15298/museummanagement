@@ -27,7 +27,7 @@ public class Constants {
     public static final Integer TYPE_EDUCATIONAL_ACTIVITIES = 12;
 
     public static final Integer TYPE_OPEN_TIME= 0;
-    public static final Integer TYPE_SIGHTSEEING_RULES = 1;
+    public static final Integer TYPE_SIGHTSEEING_RULE = 1;
     public static final Integer TYPE_INSTRUCTION= 2;
     public static final Integer TYPE_GENERAL_INTRODUCTION= 3;
     public static final Integer TYPE_ORGANIZATIONAL_STRUCTURE= 4;
