@@ -28,7 +28,7 @@ public class SightSeeingRuleServiceImpl implements SightSeeingRuleService {
             sightSeeingRule.setName(sightSeeingRuleDTO.getName());
             sightSeeingRule.setTitle(sightSeeingRuleDTO.getTitle());
             sightSeeingRule.setContent(sightSeeingRuleDTO.getContent());
-            sightSeeingRule.setType(Constants.TYPE_SIGHTSEEING_RULES);
+            sightSeeingRule.setType(Constants.TYPE_SIGHTSEEING_RULE);
             sightSeeingRule.setStatus(Constants.STATUS_ACTIVE);
             sightSeeingRuleRepository.save(sightSeeingRule);
         } else {
@@ -48,7 +48,7 @@ public class SightSeeingRuleServiceImpl implements SightSeeingRuleService {
                 sightSeeingRule.setName(sightSeeingRuleDTO.getName());
                 sightSeeingRule.setTitle(sightSeeingRuleDTO.getTitle());
                 sightSeeingRule.setContent(sightSeeingRuleDTO.getContent());
-                sightSeeingRule.setType(Constants.TYPE_SIGHTSEEING_RULES);
+                sightSeeingRule.setType(Constants.TYPE_SIGHTSEEING_RULE);
                 sightSeeingRule.setStatus(Constants.STATUS_ACTIVE);
                 sightSeeingRuleRepository.save(sightSeeingRule);
             } else {
