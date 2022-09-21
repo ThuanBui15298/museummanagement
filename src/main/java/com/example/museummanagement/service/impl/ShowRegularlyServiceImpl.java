@@ -62,10 +62,10 @@ public class ShowRegularlyServiceImpl implements ShowRegularlyService {
                 showRegular.setStatus(Constants.STATUS_ACTIVE);
                 showRegularlyRepository.save(showRegular);
             } else {
-                throw new MessageDescriptorFormatException("Name da ton tai");
+                throw new MessageDescriptorFormatException("Name existed!");
             }
         } else {
-            throw new MessageDescriptorFormatException("Id khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found by id: " + id);
         }
         return showRegularlyDTO;
     }
@@ -76,7 +76,7 @@ public class ShowRegularlyServiceImpl implements ShowRegularlyService {
     public void deleteShowRegularly(Long id) {
         List<ShowRegularly> showRegularlyList = showRegularlyRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(showRegularlyList)) {
-            throw new MessageDescriptorFormatException(" Khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (ShowRegularly showRegularly : showRegularlyList) {
             showRegularly.setStatus(Constants.STATUS_INACTIVE);

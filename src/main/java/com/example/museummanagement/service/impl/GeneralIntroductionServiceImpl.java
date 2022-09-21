@@ -71,7 +71,7 @@ public class GeneralIntroductionServiceImpl implements GeneralIntroductionServic
     public void deleteGeneralIntroduction(Long id) {
         List<GeneralIntroduction> generalIntroductionsList = generalIntroductionRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(generalIntroductionsList)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (GeneralIntroduction generalIntroduction : generalIntroductionsList) {
             generalIntroduction.setStatus(Constants.STATUS_INACTIVE);

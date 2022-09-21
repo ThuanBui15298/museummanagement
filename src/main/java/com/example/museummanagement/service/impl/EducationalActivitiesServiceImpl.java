@@ -78,7 +78,7 @@ public class EducationalActivitiesServiceImpl implements EducationalActivitiesSe
     public void deleteEducationalActivities(Long id) {
         List<EducationalActivities> educationalActivitiesList = educationalActivitiesRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(educationalActivitiesList)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (EducationalActivities educationalActivities : educationalActivitiesList) {
             educationalActivities.setStatus(Constants.STATUS_INACTIVE);

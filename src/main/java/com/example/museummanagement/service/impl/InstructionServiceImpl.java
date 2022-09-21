@@ -70,7 +70,7 @@ public class InstructionServiceImpl implements InstructionService {
     public void deleteInstruction(Long id) {
         List<Instruction> instructions = instructionRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(instructions)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (Instruction instruction : instructions) {
             instruction.setStatus(Constants.STATUS_INACTIVE);

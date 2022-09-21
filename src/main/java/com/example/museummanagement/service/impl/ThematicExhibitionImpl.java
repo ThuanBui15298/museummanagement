@@ -43,7 +43,7 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
             thematicExhibition.setStatus(Constants.STATUS_ACTIVE);
             thematicExhibitionRepository.save(thematicExhibition);
         } else {
-            throw new MessageDescriptorFormatException("Name da ton tai");
+            throw new MessageDescriptorFormatException("Name existed!");
         }
         return thematicExhibitionDTO;
     }
@@ -71,7 +71,7 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
                 throw new Exception("Name existed!");
             }
         } else {
-            throw new MessageDescriptorFormatException("Id khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found by id: " + id);
         }
         return thematicExhibitionDTO;
     }
@@ -82,7 +82,7 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
     public void deleteThematicExhibition(Long id) {
         List<ThematicExhibition> thematicExhibitions = thematicExhibitionRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(thematicExhibitions)) {
-            throw new MessageDescriptorFormatException("Khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (ThematicExhibition thematicExhibition : thematicExhibitions) {
             thematicExhibition.setStatus(Constants.STATUS_INACTIVE);

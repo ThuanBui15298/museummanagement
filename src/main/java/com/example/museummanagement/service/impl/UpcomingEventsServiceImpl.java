@@ -39,7 +39,7 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
             upcomingEvents.setStatus(Constants.STATUS_ACTIVE);
             upcomingEventsRepository.save(upcomingEvents);
         } else {
-            throw new MessageDescriptorFormatException("Name da ton tai");
+            throw new MessageDescriptorFormatException("Name existed!");
         }
         return upcomingEventsDTO;
     }
@@ -64,10 +64,10 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
                 upcomingEvents.setStatus(Constants.STATUS_ACTIVE);
                 upcomingEventsRepository.save(upcomingEvents);
             } else {
-                throw new MessageDescriptorFormatException("Name da ton tai");
+                throw new MessageDescriptorFormatException("Name existed!");
             }
         } else {
-            throw new MessageDescriptorFormatException("Id khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found by id: " + id);
         }
         return upcomingEventsDTO;
     }
@@ -78,7 +78,7 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
     public void deleteUpcomingEvents(Long id) {
         List<UpcomingEvents> upE = upcomingEventsRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(upE)) {
-            throw new MessageDescriptorFormatException(" Khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (UpcomingEvents upcomingEvents : upE) {
             upcomingEvents.setStatus(Constants.STATUS_INACTIVE);

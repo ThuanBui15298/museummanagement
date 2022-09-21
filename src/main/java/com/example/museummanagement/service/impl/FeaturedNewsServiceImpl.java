@@ -66,10 +66,10 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
                 featuredNews.setStatus(Constants.STATUS_ACTIVE);
                 featuredNewsRepository.save(featuredNews);
             } else {
-                throw new MessageDescriptorFormatException("Name da ton tai");
+                throw new MessageDescriptorFormatException("Name existed!");
             }
         } else {
-            throw new MessageDescriptorFormatException("Id khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found by id: " + id);
         }
         return featuredNewsDTO;
     }
@@ -80,7 +80,7 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
     public void deleteFeaturedNews(Long id) {
         List<FeaturedNews> feN = featuredNewsRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(feN)) {
-            throw new MessageDescriptorFormatException("Khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (FeaturedNews featuredNews : feN) {
             featuredNews.setStatus(Constants.STATUS_INACTIVE);
