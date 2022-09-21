@@ -21,7 +21,7 @@ public class CategoryApi {
     public ResponseEntity<?> createCategory(
             @RequestBody CategoryDTO categoryDTO) throws Exception {
         categoryService.createCategory(categoryDTO);
-        return new ResponseEntity(categoryDTO, HttpStatus.OK);
+        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")

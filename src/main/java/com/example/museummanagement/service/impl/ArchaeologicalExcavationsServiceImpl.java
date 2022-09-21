@@ -8,8 +8,11 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -86,7 +89,13 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
     }
 
     @Override
-    public List<ArchaeologicalExcavations> findAll() {
-        return archaeologicalExcavationsRepository.findAll();
+    public Page<ArchaeologicalExcavations> findAllArchaeologicalExcavations(Pageable pageable, ArchaeologicalExcavationsDTO archaeologicalExcavationsDTO) {
+        String search;
+        if(StringUtils.isEmpty(archaeologicalExcavationsDTO.getSearch())) {
+            search = "%%";
+        } else  {
+            search = "%" + archaeologicalExcavationsDTO.getSearch().toLowerCase() + "%";
+        }
+        return archaeologicalExcavationsRepository.findAllBySearch(pageable, search);
     }
 }

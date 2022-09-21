@@ -2,6 +2,8 @@ package com.example.museummanagement.service;
 
 import com.example.museummanagement.dto.EducationalActivitiesDTO;
 import com.example.museummanagement.entity.EducationalActivities;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,6 +18,6 @@ public interface EducationalActivitiesService {
 
     void deleteEducationalActivities(Long id) ;
 
-    List<EducationalActivities> findAllEducationalActivities();
+    Page<EducationalActivities> findAllEducationalActivities(Pageable pageable, EducationalActivitiesDTO educationalActivitiesDTO);
 
 }

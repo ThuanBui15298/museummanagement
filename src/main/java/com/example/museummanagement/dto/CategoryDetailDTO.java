@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class CategoryDetailDTO {
-    String name;
+    private String name;
 
-    String title;
+    private String title;
 
-    String content;
+    private String content;
 
-    String description;
+    private String description;
 }

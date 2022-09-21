@@ -20,7 +20,7 @@ public class PublicationTopicApi {
     public ResponseEntity<?> createPublicationTopic(
             @RequestBody PublicationTopicDTO publicationTopicDTO) {
         publicationTopicService.createPublicationTopic(publicationTopicDTO);
-        return new ResponseEntity(publicationTopicDTO, HttpStatus.OK);
+        return new ResponseEntity<>(publicationTopicDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")

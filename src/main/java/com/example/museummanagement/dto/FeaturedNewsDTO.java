@@ -16,4 +16,7 @@ public class FeaturedNewsDTO {
     private String slug;
 
     private String author;
+
+    private String search;
+
 }

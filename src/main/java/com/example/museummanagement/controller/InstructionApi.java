@@ -18,7 +18,7 @@ public class InstructionApi {
     public ResponseEntity<?> createInstruction(
             @RequestBody InstructionDTO instructionDTO) {
         instructionService.createInstruction(instructionDTO);
-        return new ResponseEntity(instructionDTO, HttpStatus.OK);
+        return new ResponseEntity<>(instructionDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")

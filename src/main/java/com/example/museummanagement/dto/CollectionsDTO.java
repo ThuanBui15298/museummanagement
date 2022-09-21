@@ -20,4 +20,6 @@ public class CollectionsDTO {
     private Long categoryId;
 
     private  String author;
+
+    private String search;
 }

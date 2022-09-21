@@ -8,8 +8,11 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -89,8 +92,14 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
     }
 
     @Override
-    public List<ThematicExhibition> findAll() {
-        return thematicExhibitionRepository.findAll();
+    public Page<ThematicExhibition> findAll(Pageable pageable, ThematicExhibitionDTO thematicExhibitionDTO) {
+        String search;
+        if (StringUtils.isEmpty(thematicExhibitionDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + thematicExhibitionDTO.getSearch().toLowerCase() + "%";
+        }
+        return thematicExhibitionRepository.findAllThematicExhibition(pageable, search);
     }
 
     @SneakyThrows

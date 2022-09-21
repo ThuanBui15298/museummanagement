@@ -5,6 +5,8 @@ import com.example.museummanagement.dto.CollectionsDTO;
 import com.example.museummanagement.entity.Collections;
 import com.example.museummanagement.service.CollectionsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,7 @@ public class CollectionsApi {
     public ResponseEntity<?> createCollections(
             @RequestBody CollectionsDTO collectionsDTO) {
         collectionsService.createCollections(collectionsDTO);
-        return new ResponseEntity(collectionsDTO, HttpStatus.OK);
+        return new ResponseEntity<>(collectionsDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
@@ -38,8 +40,9 @@ public class CollectionsApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<Collections>> findAllCollectingWork() {
-        return new ResponseEntity<>(collectionsService.findAllCollections(), HttpStatus.OK);
+    public ResponseEntity<Page<Collections>> findAllCollectingWork(Pageable pageable,
+                                                                   @RequestBody CollectionsDTO collectionsDTO) {
+        return new ResponseEntity<>(collectionsService.findAllCollections(pageable, collectionsDTO), HttpStatus.OK);
     }
 
 

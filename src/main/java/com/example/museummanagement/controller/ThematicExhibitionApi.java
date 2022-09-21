@@ -4,6 +4,7 @@ import com.example.museummanagement.dto.ThematicExhibitionDTO;
 import com.example.museummanagement.entity.ThematicExhibition;
 import com.example.museummanagement.service.ThematicExhibitionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ThematicExhibitionApi {
     public ResponseEntity<?> createThematicExhibition(
             @RequestBody ThematicExhibitionDTO thematicExhibitionDTO) {
         thematicExhibitionService.createThematicExhibition(thematicExhibitionDTO);
-        return new ResponseEntity(thematicExhibitionDTO, HttpStatus.OK);
+        return new ResponseEntity<>(thematicExhibitionDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
@@ -37,7 +38,7 @@ public class ThematicExhibitionApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<ThematicExhibition>> getAllThematicExhibition() {
-        return new ResponseEntity<>(thematicExhibitionService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Iterable<ThematicExhibition>> getAllThematicExhibition(Pageable pageable,@RequestBody ThematicExhibitionDTO thematicExhibitionDTO) {
+        return new ResponseEntity<>(thematicExhibitionService.findAll(pageable, thematicExhibitionDTO), HttpStatus.OK);
     }
 }

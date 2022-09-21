@@ -17,4 +17,6 @@ public class ArchaeologicalExcavationsDTO {
     private Long categoryId;
 
     private String author;
+
+    private String search;
 }

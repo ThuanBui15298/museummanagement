@@ -4,6 +4,8 @@ import com.example.museummanagement.dto.ArchaeologicalExcavationsDTO;
 import com.example.museummanagement.entity.ArchaeologicalExcavations;
 import com.example.museummanagement.service.ArchaeologicalExcavationsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,7 @@ public class ArchaeologicalExcavationsApi {
     public ResponseEntity<?> createArchaeologicalExcavations(
             @RequestBody ArchaeologicalExcavationsDTO archaeologicalExcavationsDTO) {
         archaeologicalExcavationsService.createArchaeologicalExcavations(archaeologicalExcavationsDTO);
-        return new ResponseEntity(archaeologicalExcavationsDTO, HttpStatus.OK);
+        return new ResponseEntity<>(archaeologicalExcavationsDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
@@ -37,8 +39,9 @@ public class ArchaeologicalExcavationsApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<ArchaeologicalExcavations>> getAllThematicExhibition() {
-        return new ResponseEntity<>(archaeologicalExcavationsService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<ArchaeologicalExcavations>> getAllThematicExhibition(Pageable pageable,
+                                                                                    @RequestBody ArchaeologicalExcavationsDTO archaeologicalExcavationsDTO) {
+        return new ResponseEntity<>(archaeologicalExcavationsService.findAllArchaeologicalExcavations(pageable, archaeologicalExcavationsDTO), HttpStatus.OK);
     }
 }
 

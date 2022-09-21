@@ -22,7 +22,7 @@ public class UpcomingEventsApi {
     public ResponseEntity<?> createUpcomingEvents(
             @RequestBody UpcomingEventsDTO upcomingEventsDTO) throws Exception {
         upcomingEventsService.createUpcomingEvents(upcomingEventsDTO);
-        return new ResponseEntity(upcomingEventsDTO, HttpStatus.OK);
+        return new ResponseEntity<>(upcomingEventsDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")

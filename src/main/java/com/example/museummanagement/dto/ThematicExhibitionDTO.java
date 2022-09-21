@@ -17,4 +17,7 @@ public class ThematicExhibitionDTO {
     private String slug;
 
     private String author;
+
+    private String search;
+
 }

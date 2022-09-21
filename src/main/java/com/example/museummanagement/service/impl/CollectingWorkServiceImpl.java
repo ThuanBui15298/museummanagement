@@ -8,8 +8,11 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -85,7 +88,13 @@ public class CollectingWorkServiceImpl implements CollectingWorkService {
     }
 
     @Override
-    public List<CollectingWork> findAllCollectingWork() {
-        return collectingWorkRepository.findAll();
+    public Page<CollectingWork> findAllCollectingWork(Pageable pageable, CollectingWorkDTO collectingWorkDTO) {
+        String search;
+        if (StringUtils.isEmpty(collectingWorkDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + collectingWorkDTO.getSearch().toLowerCase() + "%";
+        }
+        return collectingWorkRepository.findAllBySearch(pageable,search);
     }
 }

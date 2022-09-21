@@ -10,15 +10,15 @@ import javax.persistence.*;
 public class CategoryDetail extends BaseTimeModel{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
 
-    String title;
+    private String title;
 
-    String content;
+    private String content;
 
-    String description;
+    private String description;
 
-    int categoryId;
+    private int categoryId;
 }

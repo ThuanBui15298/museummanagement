@@ -4,6 +4,8 @@ import com.example.museummanagement.dto.EducationalActivitiesDTO;
 import com.example.museummanagement.entity.EducationalActivities;
 import com.example.museummanagement.service.EducationalActivitiesService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,7 @@ public class EducationalActivitiesApi {
         public ResponseEntity<?> createEducationalActivities(
                 @RequestBody EducationalActivitiesDTO educationalActivitiesDTO) {
             educationalActivitiesService.createEducationalActivities(educationalActivitiesDTO);
-            return new ResponseEntity(educationalActivitiesDTO, HttpStatus.OK);
+            return new ResponseEntity<>(educationalActivitiesDTO, HttpStatus.OK);
         }
 
         @PutMapping(value = "/update/{id}")
@@ -37,8 +39,9 @@ public class EducationalActivitiesApi {
         }
 
         @GetMapping("/get-all")
-        public ResponseEntity<Iterable<EducationalActivities>> findAllEducationalActivities() {
-            return new ResponseEntity<>(educationalActivitiesService.findAllEducationalActivities(), HttpStatus.OK);
+        public ResponseEntity<Page<EducationalActivities>> findAllEducationalActivities(Pageable pageable,
+                                                                                        @RequestBody EducationalActivitiesDTO educationalActivitiesDTO) {
+            return new ResponseEntity<>(educationalActivitiesService.findAllEducationalActivities(pageable,educationalActivitiesDTO), HttpStatus.OK);
         }
 
     }

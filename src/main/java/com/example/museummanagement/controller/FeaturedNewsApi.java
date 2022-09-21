@@ -4,6 +4,8 @@ import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.entity.FeaturedNews;
 import com.example.museummanagement.service.FeaturedNewsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,7 @@ public class FeaturedNewsApi {
     public ResponseEntity<?> createFeaturedNews(
             @RequestBody FeaturedNewsDTO featuredNewsDTO) {
         featuredNewsService.createFeaturedNews(featuredNewsDTO);
-        return new ResponseEntity(featuredNewsDTO, HttpStatus.OK);
+        return new ResponseEntity<>(featuredNewsDTO, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
@@ -39,7 +41,8 @@ public class FeaturedNewsApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<FeaturedNews>> getAllFeaturedNews() {
-        return new ResponseEntity<>(featuredNewsService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<FeaturedNews>> getAllFeaturedNews(Pageable pageable,
+                                                                 @RequestBody FeaturedNewsDTO featuredNewsDTO) {
+        return new ResponseEntity<>(featuredNewsService.findAllFeaturedNews(pageable, featuredNewsDTO), HttpStatus.OK);
     }
 }

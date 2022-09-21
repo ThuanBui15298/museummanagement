@@ -20,4 +20,6 @@ public class CulturalKnowledgeDTO {
     private Long categoryId;
 
     private  String author;
+
+    private String search;
 }
