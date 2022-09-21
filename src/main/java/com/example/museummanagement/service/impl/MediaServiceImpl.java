@@ -49,7 +49,7 @@ public class MediaServiceImpl implements MediaService {
             med.setStatus(Constants.STATUS_ACTIVE);
             mediaRepository.save(med);
         } else {
-            throw new MessageDescriptorFormatException("Id khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found by id: " + id);
         }
         return mediaDTO;
     }
@@ -58,7 +58,7 @@ public class MediaServiceImpl implements MediaService {
     public void deleteMedia(Long id) {
         List<Media> media = mediaRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(media)) {
-            throw new MessageDescriptorFormatException(" Khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (Media medias : media) {
             medias.setStatus(Constants.STATUS_INACTIVE);

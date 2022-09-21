@@ -79,7 +79,7 @@ public class CulturalKnowledgeServiceImpl implements CulturalKnowledgeService {
     public void deleteCulturalKnowledge(Long id) {
         List<CulturalKnowledge> culturalKnowledge = culturalKnowledgeRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(culturalKnowledge)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (CulturalKnowledge culturalKnowledges : culturalKnowledge) {
             culturalKnowledges.setStatus(Constants.STATUS_INACTIVE);

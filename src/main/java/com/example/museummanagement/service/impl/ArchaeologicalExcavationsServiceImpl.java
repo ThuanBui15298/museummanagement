@@ -79,7 +79,7 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
     public void deleteArchaeologicalExcavations(Long id) {
         List<ArchaeologicalExcavations> archaeologicalExcavationsList = archaeologicalExcavationsRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(archaeologicalExcavationsList)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (ArchaeologicalExcavations archaeologicalExcavations : archaeologicalExcavationsList) {
             archaeologicalExcavations.setStatus(Constants.STATUS_INACTIVE);

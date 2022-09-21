@@ -72,7 +72,7 @@ public class SyntheticServiceImpl implements SyntheticService {
     public void deleteSynthetic(Long id) {
         List<Synthetic> syntheticList = syntheticRepository.findALlByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(syntheticList)) {
-            throw new NoSuchElementException("Not found synthetic");
+            throw new NoSuchElementException("Can not found!");
         }
         for (Synthetic synthetic: syntheticList) {
             synthetic.setCreatDate(new Date());

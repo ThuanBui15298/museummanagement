@@ -71,7 +71,7 @@ public class OrganizationalStructureServiceImpl implements OrganizationalStructu
     public void deleteOrganizationalStructure(Long id) {
         List<OrganizationalStructure> organizationalStructureList = organizationalStructureRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(organizationalStructureList)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (OrganizationalStructure organizationalStructure : organizationalStructureList) {
             organizationalStructure.setStatus(Constants.STATUS_INACTIVE);

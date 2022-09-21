@@ -75,7 +75,7 @@ public class PublicationTopicServiceImpl implements PublicationTopicService {
     public void deletePublicationTopic(Long id) {
         List<PublicationTopic> publicationTopics = publicationTopicRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(publicationTopics)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (PublicationTopic publicationTopic : publicationTopics) {
             publicationTopic.setStatus(Constants.STATUS_INACTIVE);

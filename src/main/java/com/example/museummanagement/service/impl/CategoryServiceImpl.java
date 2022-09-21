@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
             category.setStatus(Constants.STATUS_ACTIVE);
             categoryRepository.save(category);
         } else {
-            throw new MessageDescriptorFormatException("Name da ton tai");
+            throw new MessageDescriptorFormatException("Name existed!");
         }
         return categoryDTO;
     }
@@ -51,10 +51,10 @@ public class CategoryServiceImpl implements CategoryService {
                 cat.setStatus(Constants.STATUS_ACTIVE);
                 categoryRepository.save(cat);
             } else {
-                throw new MessageDescriptorFormatException("Name Danh muc da ton tai");
+                throw new MessageDescriptorFormatException("Name existed");
             }
         } else {
-            throw new MessageDescriptorFormatException("Id khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found by id: " + id);
         }
         return categoryDTO;
     }
@@ -65,7 +65,7 @@ public class CategoryServiceImpl implements CategoryService {
     public void deleteCategory(Long id) {
         List<Category> categories = categoryRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(categories)) {
-            throw new MessageDescriptorFormatException("Khong ton tai");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (Category category : categories) {
             category.setStatus(Constants.STATUS_INACTIVE);

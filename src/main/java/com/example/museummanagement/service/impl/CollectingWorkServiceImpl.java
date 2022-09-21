@@ -78,7 +78,7 @@ public class CollectingWorkServiceImpl implements CollectingWorkService {
     public void deleteCollectingWork(Long id) {
         List<CollectingWork> collectingWorks = collectingWorkRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(collectingWorks)) {
-            throw new MessageDescriptorFormatException("No existed");
+            throw new MessageDescriptorFormatException("Can not found!");
         }
         for (CollectingWork collectingWork : collectingWorks) {
             collectingWork.setStatus(Constants.STATUS_INACTIVE);
