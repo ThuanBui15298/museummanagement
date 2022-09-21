@@ -4,7 +4,6 @@ import com.example.museummanagement.dto.NationalTreasuresDTO;
 import com.example.museummanagement.entity.NationalTreasures;
 import com.example.museummanagement.service.NationalTreasuresService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NationalTreasuresApi {
 
-    @Autowired
-    private NationalTreasuresService nationalTreasuresService;
+    private final NationalTreasuresService nationalTreasuresService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createNationalTreasures(@RequestBody NationalTreasuresDTO nationalTreasuresDTO) {
