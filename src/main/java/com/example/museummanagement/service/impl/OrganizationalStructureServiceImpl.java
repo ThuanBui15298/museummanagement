@@ -50,7 +50,7 @@ public class OrganizationalStructureServiceImpl implements OrganizationalStructu
             OrganizationalStructure organizationalStructure = optionalOrganizationalStructure.get();
             Optional<OrganizationalStructure> organizationalStructureOpt = organizationalStructureRepository.findByName(organizationalStructureDTO.getName());
             if (organizationalStructureOpt.isEmpty() || organizationalStructure.getId().equals(organizationalStructureOpt.get().getId())) {
-                organizationalStructure.setType(Constants.TYPE_GENERAL_INTRODUCTION);
+                organizationalStructure.setType(Constants.TYPE_ORGANIZATIONAL_STRUCTURE);
                 organizationalStructure.setName(organizationalStructureDTO.getName());
                 organizationalStructure.setTitle(organizationalStructureDTO.getTitle());
                 organizationalStructure.setContent(organizationalStructureDTO.getContent());
