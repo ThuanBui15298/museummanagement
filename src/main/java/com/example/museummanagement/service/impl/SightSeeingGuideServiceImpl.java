@@ -46,7 +46,7 @@ public class SightSeeingGuideServiceImpl implements SightSeeingGuideService {
         if (optionalSightSeeingGuide.isPresent()) {
             SightSeeingGuide sightSeeingGuide = optionalSightSeeingGuide.get();
             Optional<SightSeeingGuide> optional = sightSeeingGuideRepository.findByName(sightSeeingGuideDTO.getName());
-            if (optional.isEmpty()) {
+            if (optional.isEmpty() || sightSeeingGuide.getId().equals(optional.get().getId())) {
                 sightSeeingGuide.setName(sightSeeingGuideDTO.getName());
                 sightSeeingGuide.setTitle(sightSeeingGuideDTO.getTitle());
                 sightSeeingGuide.setContent(sightSeeingGuideDTO.getContent());

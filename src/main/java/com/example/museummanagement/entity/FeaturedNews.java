@@ -22,7 +22,7 @@ public class FeaturedNews extends BaseTimeModel {
 
     private String content;
 
-    private Long categoryId;
+    private Long categoryDetailId;
 
     private  String author;
 

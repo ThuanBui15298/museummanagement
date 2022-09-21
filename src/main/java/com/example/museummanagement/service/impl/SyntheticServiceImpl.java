@@ -33,7 +33,6 @@ public class SyntheticServiceImpl implements SyntheticService {
             synthetics.setName(synthetic.getName());
             synthetics.setTitle(synthetic.getTitle());
             synthetics.setContent(synthetic.getContent());
-            synthetics.setCategoryId(synthetic.getCategoryId());
             synthetics.setStatus(Constants.STATUS_ACTIVE);
             syntheticRepository.save(synthetics);
         } else {
@@ -51,12 +50,11 @@ public class SyntheticServiceImpl implements SyntheticService {
             Synthetic sy = optionalSynthetic.get();
 
             Optional<Synthetic> optional = syntheticRepository.findByName(synthetic.getName());
-            if (optional.isEmpty()){
+            if (optional.isEmpty() || sy.getId().equals(optional.get().getId())){
                 sy.setType(synthetic.getType());
                 sy.setName(synthetic.getName());
                 sy.setTitle(synthetic.getTitle());
                 sy.setContent(synthetic.getContent());
-                sy.setCategoryId(synthetic.getCategoryId());
                 sy.setStatus(Constants.STATUS_ACTIVE);
                 syntheticRepository.save(sy);
             } else {

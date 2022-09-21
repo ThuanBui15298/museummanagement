@@ -48,10 +48,10 @@ public class CollectingWorkServiceImpl implements CollectingWorkService {
     @Override
     public CollectingWorkDTO updateCollectingWork(CollectingWorkDTO collectingWorkDTO, Long id) {
         Optional<CollectingWork> optionalCollectingWork = collectingWorkRepository.findById(id);
-        CollectingWork collectingWork = optionalCollectingWork.get();
         if (optionalCollectingWork.isPresent()) {
+            CollectingWork collectingWork = optionalCollectingWork.get();
             Optional<CollectingWork> collectingWorks = collectingWorkRepository.findByName(collectingWorkDTO.getName());
-            if (collectingWorks.isEmpty()){
+            if (collectingWorks.isEmpty() || collectingWork.getId().equals(collectingWorks.get().getId())){
                 collectingWork.setType(Constants.TYPE_COLLECTING_WORK);
                 collectingWork.setName(collectingWorkDTO.getName());
                 collectingWork.setTitle(collectingWorkDTO.getTitle());

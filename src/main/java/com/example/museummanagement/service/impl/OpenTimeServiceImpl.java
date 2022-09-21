@@ -46,7 +46,7 @@ public class OpenTimeServiceImpl implements OpenTimeService {
         if (optionalOpenTime.isPresent()) {
             OpenTime open = optionalOpenTime.get();
             Optional<OpenTime> optional = openTimeRepository.findByName(openTime.getName());
-            if (optional.isEmpty()) {
+            if (optional.isEmpty() || open.getId().equals(optional.get().getId())) {
                 open.setName(openTime.getName());
                 open.setTitle(openTime.getTitle());
                 open.setContent(openTime.getContent());

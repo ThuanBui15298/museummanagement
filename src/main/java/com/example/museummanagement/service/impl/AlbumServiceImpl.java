@@ -50,7 +50,7 @@ public class AlbumServiceImpl implements AlbumService {
             Album album1 = optional.get();
 
             Optional<Album> optional1 = albumRepository.findByName(album.getName());
-            if (optional1.isEmpty()) {
+            if (optional1.isEmpty() || album1.getId().equals(optional1.get().getId())) {
                 album1.setName(album.getName());
                 album1.setSlug(album.getSlug());
                 album1.setStatus(Constants.STATUS_ACTIVE);

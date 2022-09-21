@@ -24,7 +24,7 @@ public class CollectionsApi {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<?> updateCollectingWork(
+    public ResponseEntity<?> updateCollections(
             @RequestBody CollectionsDTO collectionsDTO,
             @PathVariable("id") Long id) {
         collectionsService.updateCollections(collectionsDTO, id);

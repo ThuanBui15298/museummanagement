@@ -24,6 +24,6 @@ public class NationalTreasures extends BaseTimeModel{
 
     private  String author;
 
-    private Long categoryId;
+    private Long categoryDetailId;
 
 }

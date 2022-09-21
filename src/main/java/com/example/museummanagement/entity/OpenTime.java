@@ -20,5 +20,5 @@ public class OpenTime extends BaseTimeModel{
 
     private String content;
 
-    private Long categoryId;
+    private Long categoryDetailId;
 }

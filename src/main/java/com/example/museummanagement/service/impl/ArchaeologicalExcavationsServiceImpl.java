@@ -49,10 +49,10 @@ public class ArchaeologicalExcavationsServiceImpl implements ArchaeologicalExcav
     @Override
     public ArchaeologicalExcavationsDTO updateArchaeologicalExcavations(ArchaeologicalExcavationsDTO archaeologicalExcavationsDTO, Long id) {
         Optional<ArchaeologicalExcavations> optionalArchaeologicalExcavations = archaeologicalExcavationsRepository.findById(id);
-        ArchaeologicalExcavations archaeologicalExcavations = optionalArchaeologicalExcavations.get();
         if (optionalArchaeologicalExcavations.isPresent()) {
+            ArchaeologicalExcavations archaeologicalExcavations = optionalArchaeologicalExcavations.get();
             Optional<ArchaeologicalExcavations> archaeologicalExcavation = archaeologicalExcavationsRepository.findByName(archaeologicalExcavationsDTO.getName());
-            if (archaeologicalExcavation.isEmpty()){
+            if (archaeologicalExcavation.isEmpty() || archaeologicalExcavations.getId().equals(archaeologicalExcavation.get().getId())){
                 archaeologicalExcavations.setType(Constants.TYPE_ARCHAEOLOGICAL_EXCAVATIONS);
                 archaeologicalExcavations.setName(archaeologicalExcavationsDTO.getName());
                 archaeologicalExcavations.setTitle(archaeologicalExcavationsDTO.getTitle());

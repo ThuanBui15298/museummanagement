@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
             Category cat = category.get();
 
             Optional<Category> categoryName = categoryRepository.findByName(categoryDTO.getName());
-            if (categoryName.isEmpty()) {
+            if (categoryName.isEmpty() || cat.getId().equals(categoryName.get().getId())) {
                 cat.setName(categoryDTO.getName());
                 cat.setStatus(Constants.STATUS_ACTIVE);
                 categoryRepository.save(cat);

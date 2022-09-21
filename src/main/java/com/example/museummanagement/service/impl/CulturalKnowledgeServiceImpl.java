@@ -49,10 +49,10 @@ public class CulturalKnowledgeServiceImpl implements CulturalKnowledgeService {
     @Override
     public CulturalKnowledgeDTO updateCulturalKnowledge(CulturalKnowledgeDTO culturalKnowledgeDTO, Long id) {
         Optional<CulturalKnowledge> optionalCulturalKnowledge = culturalKnowledgeRepository.findById(id);
-        CulturalKnowledge culturalKnowledge = optionalCulturalKnowledge.get();
         if (optionalCulturalKnowledge.isPresent()) {
+            CulturalKnowledge culturalKnowledge = optionalCulturalKnowledge.get();
             Optional<CulturalKnowledge> culturalKnowledgeOpt = culturalKnowledgeRepository.findByName(culturalKnowledgeDTO.getName());
-            if (culturalKnowledgeOpt.isEmpty()){
+            if (culturalKnowledgeOpt.isEmpty() || culturalKnowledge.getId().equals(culturalKnowledgeOpt.get().getId())){
                 culturalKnowledge.setType(Constants.TYPE_CULTURAL_KNOWLEDGE);
                 culturalKnowledge.setName(culturalKnowledgeDTO.getName());
                 culturalKnowledge.setTitle(culturalKnowledgeDTO.getTitle());

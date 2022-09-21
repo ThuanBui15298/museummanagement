@@ -20,5 +20,5 @@ public class SightSeeingRule extends BaseTimeModel{
 
     private String content;
 
-    private Long categoryId;
+    private Long categoryDetailId;
 }

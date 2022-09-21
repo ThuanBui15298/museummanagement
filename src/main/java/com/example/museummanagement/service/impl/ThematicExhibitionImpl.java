@@ -53,11 +53,10 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
         validRequest(thematicExhibitionDTO);
         Optional<ThematicExhibition> thematicExh = thematicExhibitionRepository.findById(id);
         if (thematicExh.isPresent()) {
-
-            // sửa phần update theo name có vẫn cho update
             ThematicExhibition thematicExhibition = thematicExh.get();
-            Optional<ThematicExhibition> thematicExhibitionName = thematicExhibitionRepository.findByName(thematicExhibition.getName());
-            if (thematicExhibitionName.isEmpty() && thematicExh.get().getId() == thematicExhibitionName.get().getId()) {
+            Optional<ThematicExhibition> thematicExhibitionName = thematicExhibitionRepository.findByName(thematicExhibitionDTO.getName());
+            if (thematicExhibitionName.isEmpty() || thematicExhibition.getId().equals(thematicExhibitionName.get().getId())) {
+                thematicExhibition.setName(thematicExhibitionDTO.getName());
                 thematicExhibition.setContent(thematicExhibitionDTO.getContent());
                 thematicExhibition.setType(Constants.TYPE_THEMATIC_EXHIBITION);
                 thematicExhibition.setTitle(thematicExhibitionDTO.getTitle());
@@ -66,7 +65,7 @@ public class ThematicExhibitionImpl implements ThematicExhibitionService {
                 thematicExhibition.setStatus(Constants.STATUS_ACTIVE);
                 thematicExhibitionRepository.save(thematicExhibition);
             } else {
-                throw new Exception("Unknown exception");
+                throw new Exception("Name existed!");
             }
         } else {
             throw new MessageDescriptorFormatException("Id khong ton tai");

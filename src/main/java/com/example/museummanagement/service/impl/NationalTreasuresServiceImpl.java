@@ -49,7 +49,7 @@ public class NationalTreasuresServiceImpl implements NationalTreasuresService {
         if (optionalNationalTreasures.isPresent()) {
             NationalTreasures nationalTreasures = optionalNationalTreasures.get();
             Optional<NationalTreasures> optional = nationalTreasuresRepository.findByName(nationalTreasuresDTO.getName());
-            if (optional.isEmpty()) {
+            if (optional.isEmpty() || nationalTreasures.getId().equals(optional.get().getId())) {
                 nationalTreasures.setName(nationalTreasuresDTO.getName());
                 nationalTreasures.setTitle(nationalTreasuresDTO.getTitle());
                 nationalTreasures.setContent(nationalTreasuresDTO.getContent());

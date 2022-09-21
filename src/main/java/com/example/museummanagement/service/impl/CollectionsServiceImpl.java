@@ -47,10 +47,10 @@ public class CollectionsServiceImpl implements CollectionsService {
     @Override
     public CollectionsDTO updateCollections(CollectionsDTO collectionsDTO, Long id) {
         Optional<Collections> optionalCollections = collectionsRepository.findById(id);
-        Collections collections = optionalCollections.get();
         if (optionalCollections.isPresent()) {
+            Collections collections = optionalCollections.get();
             Optional<Collections> collectionsOpt = collectionsRepository.findByName(collectionsDTO.getName());
-            if (collectionsOpt.isEmpty()){
+            if (collectionsOpt.isEmpty() || collections.getId().equals(collectionsOpt.get().getId())){
                 collections.setType(Constants.TYPE_COLLECTIONS);
                 collections.setName(collectionsDTO.getName());
                 collections.setTitle(collectionsDTO.getTitle());

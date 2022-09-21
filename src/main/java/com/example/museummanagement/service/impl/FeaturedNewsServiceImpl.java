@@ -53,7 +53,7 @@ public class FeaturedNewsServiceImpl implements FeaturedNewsService {
         if (feN.isPresent()) {
             FeaturedNews featuredNews = feN.get();
             Optional<FeaturedNews> featuredNewsName = featuredNewsRepository.findByName(featuredNewsDTO.getName());
-            if (featuredNewsName.isEmpty()) {
+            if (featuredNewsName.isEmpty() || featuredNews.getId().equals(featuredNewsName.get().getId())) {
                 featuredNews.setName(featuredNewsDTO.getName());
                 featuredNews.setContent(featuredNewsDTO.getContent());
                 featuredNews.setType(Constants.TYPE_FEATURED_NEWS);

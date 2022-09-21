@@ -54,7 +54,7 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
             UpcomingEvents upcomingEvents = upE.get();
 
             Optional<UpcomingEvents> upcomingEventsName = upcomingEventsRepository.findByName(upcomingEventsDTO.getName());
-            if (upcomingEventsName.isEmpty()) {
+            if (upcomingEventsName.isEmpty() || upcomingEvents.getId().equals(upcomingEventsName.get().getId())) {
                 upcomingEvents.setName(upcomingEventsDTO.getName());
                 upcomingEvents.setContent(upcomingEventsDTO.getContent());
                 upcomingEvents.setType(Constants.TYPE_UPCOMING_EVENTS);

@@ -48,10 +48,10 @@ public class PublicationTopicServiceImpl implements PublicationTopicService {
     @Override
     public PublicationTopicDTO updatePublicationTopic(PublicationTopicDTO publicationTopicDTO, Long id) {
         Optional<PublicationTopic> optionalPublicationTopic = publicationTopicRepository.findById(id);
-        PublicationTopic publicationTopic = optionalPublicationTopic.get();
         if (optionalPublicationTopic.isPresent()) {
+        PublicationTopic publicationTopic = optionalPublicationTopic.get();
             Optional<PublicationTopic> publicationTopics = publicationTopicRepository.findByName(publicationTopicDTO.getName());
-            if (publicationTopics.isEmpty()){
+            if (publicationTopics.isEmpty() || publicationTopic.getId().equals(publicationTopics.get().getId())){
                 publicationTopic.setType(Constants.TYPE_PUBLICATION_TOPICS);
                 publicationTopic.setName(publicationTopicDTO.getName());
                 publicationTopic.setTitle(publicationTopicDTO.getTitle());

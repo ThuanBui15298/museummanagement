@@ -52,7 +52,7 @@ public class ShowRegularlyServiceImpl implements ShowRegularlyService {
             ShowRegularly showRegular = optionalShowRegularly.get();
 
             Optional<ShowRegularly> optional = showRegularlyRepository.findByName(showRegularlyDTO.getName());
-            if (optional.isEmpty()) {
+            if (optional.isEmpty() || showRegular.getId().equals(optional.get().getId())) {
                 showRegular.setName(showRegularlyDTO.getName());
                 showRegular.setTitle(showRegularlyDTO.getTitle());
                 showRegular.setContent(showRegularlyDTO.getContent());

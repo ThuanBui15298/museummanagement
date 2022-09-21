@@ -51,7 +51,7 @@ public class VideosServiceImpl implements VideosService {
             Videos videos = optionalVideos.get();
 
             Optional<Videos> optional = videosRepository.findByName(video.getName());
-            if (optional.isEmpty()) {
+            if (optional.isEmpty() || videos.getId().equals(optional.get().getId())) {
                 videos.setName(video.getName());
                 videos.setSlug(video.getSlug());
                 videos.setStatus(Constants.STATUS_ACTIVE);

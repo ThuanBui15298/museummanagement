@@ -45,10 +45,10 @@ public class InstructionServiceImpl implements InstructionService {
     @Override
     public InstructionDTO updateInstruction(InstructionDTO instructionDTO, Long id) {
         Optional<Instruction> optionalInstruction = instructionRepository.findById(id);
-        Instruction instruction = optionalInstruction.get();
         if (optionalInstruction.isPresent()) {
+            Instruction instruction = optionalInstruction.get();
             Optional<Instruction> instructionOpt = instructionRepository.findByName(instructionDTO.getName());
-            if (instructionOpt.isEmpty()){
+            if (instructionOpt.isEmpty() || instruction.getId().equals(instructionOpt.get().getId())){
                 instruction.setType(Constants.TYPE_INSTRUCTION);
                 instruction.setName(instructionDTO.getName());
                 instruction.setTitle(instructionDTO.getTitle());

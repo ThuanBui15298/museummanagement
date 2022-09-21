@@ -51,7 +51,7 @@ public class ItinerantDisplayServiceImpl implements ItinerantDisplayService {
         if (optionalItinerantDisplay.isPresent()) {
             ItinerantDisplay itinerant = optionalItinerantDisplay.get();
             Optional<ItinerantDisplay> optional = itinerantDisplayRepository.findByName(itinerantDisplayDTO.getName());
-            if (optional.isEmpty()) {
+            if (optional.isEmpty() || itinerant.getId().equals(optional.get().getId())) {
                 itinerant.setType(Constants.TYPE_ITINERANT_DISPLAY);
                 itinerant.setName(itinerantDisplayDTO.getName());
                 itinerant.setTitle(itinerantDisplayDTO.getTitle());

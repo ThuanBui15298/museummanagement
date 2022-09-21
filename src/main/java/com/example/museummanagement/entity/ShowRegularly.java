@@ -23,7 +23,7 @@ public class ShowRegularly extends  BaseTimeModel {
 
         private String content;
 
-        private Long categoryId;
+        private Long categoryDetailId;
 
         private  String author;
 
