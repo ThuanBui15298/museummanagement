@@ -22,6 +22,8 @@ import java.util.*;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
+    public static final String  CATEGORY = "Category";
+
     private final CategoryDetailRepository categoryDetailRepository;
 
     @Transactional
@@ -87,7 +89,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         Map<String, Object> result = new HashMap<>();
-        result.put("category", categories);
+        result.put(CATEGORY, categories);
         return result;
     }
 
