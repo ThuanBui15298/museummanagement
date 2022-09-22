@@ -1,8 +1,11 @@
 package com.example.museummanagement.controller;
 
+import com.example.museummanagement.dto.AlbumDTO;
 import com.example.museummanagement.entity.Album;
 import com.example.museummanagement.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +37,8 @@ public class AlbumApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<Album>> getALlAlbum() {
-        return new ResponseEntity<>(albumService.getALlAlbum(), HttpStatus.OK);
+    public ResponseEntity<Page<Album>> getALlAlbum(Pageable pageable,
+                                                   @RequestBody AlbumDTO albumDTO) {
+        return new ResponseEntity<>(albumService.getAllAlbum(pageable,albumDTO), HttpStatus.OK);
     }
 }

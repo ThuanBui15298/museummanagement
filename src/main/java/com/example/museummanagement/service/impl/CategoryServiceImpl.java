@@ -2,6 +2,8 @@ package com.example.museummanagement.service.impl;
 
 import com.example.museummanagement.dto.CategoryDTO;
 import com.example.museummanagement.entity.Category;
+import com.example.museummanagement.entity.CategoryDetail;
+import com.example.museummanagement.repository.CategoryDetailRepository;
 import com.example.museummanagement.repository.CategoryRepository;
 import com.example.museummanagement.service.CategoryService;
 import com.example.museummanagement.ulti.Constants;
@@ -19,6 +21,8 @@ import java.util.*;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
+
+    private final CategoryDetailRepository categoryDetailRepository;
 
     @Transactional
     @Override
@@ -62,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
     @SneakyThrows
     @Transactional
     @Override
-    public void deleteCategory(Long id) {
+    public Map<String, Object> deleteCategory(Long id) {
         List<Category> categories = categoryRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(categories)) {
             throw new MessageDescriptorFormatException("Can not found!");
@@ -72,6 +76,19 @@ public class CategoryServiceImpl implements CategoryService {
             category.setModifiedDate(new Date());
             categoryRepository.save(category);
         }
+
+        List<CategoryDetail> categoryDetailList = categoryDetailRepository.findByCategoryIdAndStatus();
+        if (CollectionUtils.isEmpty(categoryDetailList)) {
+            throw new MessageDescriptorFormatException("Can not found!");
+        }
+        for (CategoryDetail categoryDetail: categoryDetailList) {
+            categoryDetail.setStatus(Constants.STATUS_INACTIVE);
+            categoryDetailRepository.save(categoryDetail);
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("category", categories);
+        return result;
     }
 
     @Override
@@ -88,5 +105,3 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
 }
-
-

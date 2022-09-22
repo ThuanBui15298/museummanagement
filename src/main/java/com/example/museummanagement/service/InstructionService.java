@@ -4,6 +4,8 @@ package com.example.museummanagement.service;
 
 import com.example.museummanagement.dto.InstructionDTO;
 import com.example.museummanagement.entity.Instruction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,5 +21,5 @@ public interface InstructionService {
 
     void deleteInstruction(Long id) ;
 
-    List<Instruction> findAllInstruction();
+    Page<Instruction> findAllInstruction(Pageable pageable, InstructionDTO instructionDTO);
 }

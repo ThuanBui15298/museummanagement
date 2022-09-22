@@ -7,8 +7,11 @@ import com.example.museummanagement.service.ItinerantDisplayService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -86,7 +89,13 @@ public class ItinerantDisplayServiceImpl implements ItinerantDisplayService {
     }
 
     @Override
-    public List<ItinerantDisplay> getAllItinerantDisplay() {
-        return itinerantDisplayRepository.findAll();
+    public Page<ItinerantDisplay> getAllItinerantDisplay(Pageable pageable, ItinerantDisplayDTO itinerantDisplayDTO) {
+        String search;
+        if (StringUtils.isEmpty(itinerantDisplayDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + itinerantDisplayDTO.getSearch().toLowerCase() + "%";
+        }
+        return itinerantDisplayRepository.findAllBySearch(pageable, search);
     }
 }

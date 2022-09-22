@@ -8,8 +8,11 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -27,7 +30,7 @@ public class InstructionServiceImpl implements InstructionService {
     public InstructionDTO createInstruction(InstructionDTO instructionDTO) {
         Optional<Instruction> optionalInstruction = instructionRepository.findByName(instructionDTO.getName());
         Instruction instruction = new Instruction();
-        if (optionalInstruction.isEmpty()){
+        if (optionalInstruction.isEmpty()) {
             instruction.setType(Constants.TYPE_INSTRUCTION);
             instruction.setName(instructionDTO.getName());
             instruction.setTitle(instructionDTO.getTitle());
@@ -48,7 +51,7 @@ public class InstructionServiceImpl implements InstructionService {
         if (optionalInstruction.isPresent()) {
             Instruction instruction = optionalInstruction.get();
             Optional<Instruction> instructionOpt = instructionRepository.findByName(instructionDTO.getName());
-            if (instructionOpt.isEmpty() || instruction.getId().equals(instructionOpt.get().getId())){
+            if (instructionOpt.isEmpty() || instruction.getId().equals(instructionOpt.get().getId())) {
                 instruction.setType(Constants.TYPE_INSTRUCTION);
                 instruction.setName(instructionDTO.getName());
                 instruction.setTitle(instructionDTO.getTitle());
@@ -80,7 +83,13 @@ public class InstructionServiceImpl implements InstructionService {
     }
 
     @Override
-    public List<Instruction> findAllInstruction() {
-        return instructionRepository.findAll();
+    public Page<Instruction> findAllInstruction(Pageable pageable, InstructionDTO instructionDTO) {
+        String search;
+        if (StringUtils.isEmpty(instructionDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + instructionDTO.getSearch().toLowerCase() + "%";
+        }
+        return instructionRepository.findAllBySearch(pageable, search);
     }
 }

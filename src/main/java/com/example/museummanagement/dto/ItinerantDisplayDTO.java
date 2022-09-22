@@ -20,4 +20,6 @@ public class ItinerantDisplayDTO {
     private Long categoryId;
 
     private  String author;
+
+    private String search;
 }

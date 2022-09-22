@@ -14,4 +14,6 @@ public class GeneralIntroductionDTO {
     private String content;
 
     private Long categoryId;
+
+    private String search;
 }

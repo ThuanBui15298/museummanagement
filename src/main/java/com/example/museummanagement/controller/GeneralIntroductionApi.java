@@ -4,6 +4,8 @@ import com.example.museummanagement.dto.GeneralIntroductionDTO;
 import com.example.museummanagement.entity.GeneralIntroduction;
 import com.example.museummanagement.service.GeneralIntroductionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +39,8 @@ public class GeneralIntroductionApi {
         }
 
         @GetMapping("/get-all")
-        public ResponseEntity<Iterable<GeneralIntroduction>> findAllGeneralIntroduction() {
-            return new ResponseEntity<>(generalIntroductionService.findAllGeneralIntroduction(), HttpStatus.OK);
+        public ResponseEntity<Page<GeneralIntroduction>> findAllGeneralIntroduction(Pageable pageable,
+                                                                                    @RequestBody GeneralIntroductionDTO generalIntroductionDTO) {
+            return new ResponseEntity<>(generalIntroductionService.findAllGeneralIntroduction(pageable, generalIntroductionDTO), HttpStatus.OK);
         }
 }

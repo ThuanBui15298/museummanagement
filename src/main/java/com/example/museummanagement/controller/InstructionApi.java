@@ -4,6 +4,8 @@ import com.example.museummanagement.dto.InstructionDTO;
 import com.example.museummanagement.entity.Instruction;
 import com.example.museummanagement.service.InstructionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +38,8 @@ public class InstructionApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<Instruction>> findAllInstruction() {
-        return new ResponseEntity<>(instructionService.findAllInstruction(), HttpStatus.OK);
+    public ResponseEntity<Page<Instruction>> findAllInstruction(Pageable pageable,
+                                                                @RequestBody InstructionDTO instructionDTO) {
+        return new ResponseEntity<>(instructionService.findAllInstruction(pageable, instructionDTO), HttpStatus.OK);
     }
 }

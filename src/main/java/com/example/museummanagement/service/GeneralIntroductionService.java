@@ -2,6 +2,8 @@ package com.example.museummanagement.service;
 
 import com.example.museummanagement.dto.GeneralIntroductionDTO;
 import com.example.museummanagement.entity.GeneralIntroduction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,5 +18,5 @@ public interface GeneralIntroductionService {
 
     void deleteGeneralIntroduction(Long id) ;
 
-    List<GeneralIntroduction> findAllGeneralIntroduction();
+    Page<GeneralIntroduction> findAllGeneralIntroduction(Pageable pageable, GeneralIntroductionDTO generalIntroductionDTO);
 }
