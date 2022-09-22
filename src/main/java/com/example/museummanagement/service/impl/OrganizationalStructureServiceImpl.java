@@ -11,6 +11,7 @@ import org.hibernate.validator.internal.engine.messageinterpolation.parser.Messa
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -84,4 +85,6 @@ public class OrganizationalStructureServiceImpl implements OrganizationalStructu
     public List<OrganizationalStructure> getAllOrganizationalStructure() {
         return organizationalStructureRepository.findAll();
     }
+
+
 }
