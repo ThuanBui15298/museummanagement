@@ -1,7 +1,11 @@
 package com.example.museummanagement.service;
 
+import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.SightSeeingRuleDTO;
+import com.example.museummanagement.entity.FeaturedNews;
 import com.example.museummanagement.entity.SightSeeingRule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,5 +22,6 @@ public interface SightSeeingRuleService {
 
     void deleteSightSeeingRule(Long id);
 
-    List<SightSeeingRule> getAllSightSeeingRule();
+    Page<SightSeeingRule> findAllSightSeeingRule(Pageable pageable, SightSeeingRuleDTO sightSeeingRuleDTO);
+
 }

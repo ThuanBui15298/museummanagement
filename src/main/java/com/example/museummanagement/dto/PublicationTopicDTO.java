@@ -17,4 +17,6 @@ public class PublicationTopicDTO {
     private String slug;
 
     private String author;
+
+    private String search;
 }

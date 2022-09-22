@@ -15,10 +15,5 @@ public class OrganizationalStructureDTO {
 
     private Long categoryId;
 
-    private String getSearch;
-
-
-    public String getSearch() {
-        return null;
-    }
+    private String Search;
 }

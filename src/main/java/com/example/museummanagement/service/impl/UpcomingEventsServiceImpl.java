@@ -8,8 +8,11 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -88,8 +91,14 @@ public class UpcomingEventsServiceImpl implements UpcomingEventsService {
     }
 
     @Override
-    public Iterable<UpcomingEvents> findAll() {
-        return upcomingEventsRepository.findAll();
+    public Page<UpcomingEvents> findAllUpcomingEvents(Pageable pageable, UpcomingEventsDTO upcomingEventsDTO) {
+        String search;
+        if (StringUtils.isEmpty(upcomingEventsDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + upcomingEventsDTO.getSearch().toLowerCase() + "%";
+        }
+        return upcomingEventsRepository.findAllBySearch(pageable, search);
     }
 
     @SneakyThrows

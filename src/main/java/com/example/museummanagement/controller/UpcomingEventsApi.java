@@ -1,12 +1,11 @@
 package com.example.museummanagement.controller;
 
-import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.UpcomingEventsDTO;
-import com.example.museummanagement.entity.FeaturedNews;
 import com.example.museummanagement.entity.UpcomingEvents;
-import com.example.museummanagement.service.FeaturedNewsService;
 import com.example.museummanagement.service.UpcomingEventsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +39,8 @@ public class UpcomingEventsApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<UpcomingEvents>> getAllUpcomingEvents() {
-        return new ResponseEntity<>(upcomingEventsService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<UpcomingEvents>> getAllUpcomingEvents(Pageable pageable,
+                                                                     @RequestBody UpcomingEventsDTO upcomingEventsDTO) {
+        return new ResponseEntity<>(upcomingEventsService.findAllUpcomingEvents(pageable, upcomingEventsDTO), HttpStatus.OK);
     }
 }

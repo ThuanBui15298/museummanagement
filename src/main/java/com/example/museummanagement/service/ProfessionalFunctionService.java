@@ -2,10 +2,11 @@ package com.example.museummanagement.service;
 
 import com.example.museummanagement.dto.ProfessionalFunctionDTO;
 import com.example.museummanagement.entity.ProfessionalFunction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 public interface ProfessionalFunctionService {
@@ -18,5 +19,5 @@ public interface ProfessionalFunctionService {
 
     void deleteProfessionalFunction(Long id);
 
-    List<ProfessionalFunction> getAllProfessionalFunction();
+    Page<ProfessionalFunction> findAllProfessionalFunction(Pageable pageable, ProfessionalFunctionDTO professionalFunctionDTO);
 }

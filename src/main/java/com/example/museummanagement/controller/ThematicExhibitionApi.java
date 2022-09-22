@@ -38,7 +38,8 @@ public class ThematicExhibitionApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<ThematicExhibition>> getAllThematicExhibition(Pageable pageable,@RequestBody ThematicExhibitionDTO thematicExhibitionDTO) {
+    public ResponseEntity<Iterable<ThematicExhibition>> getAllThematicExhibition(Pageable pageable,
+                                                                                 @RequestBody ThematicExhibitionDTO thematicExhibitionDTO) {
         return new ResponseEntity<>(thematicExhibitionService.findAll(pageable, thematicExhibitionDTO), HttpStatus.OK);
     }
 }

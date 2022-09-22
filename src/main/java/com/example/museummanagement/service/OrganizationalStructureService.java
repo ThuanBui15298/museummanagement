@@ -6,9 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Map;
-
 
 public interface OrganizationalStructureService {
 
@@ -20,6 +17,6 @@ public interface OrganizationalStructureService {
 
     void deleteOrganizationalStructure(Long id);
 
-    List<OrganizationalStructure> getAllOrganizationalStructure();
+    Page<OrganizationalStructure> findAllOrganizationalStructure(Pageable pageable, OrganizationalStructureDTO organizationalStructureDTO);
 
 }

@@ -4,11 +4,12 @@ import com.example.museummanagement.dto.ProfessionalFunctionDTO;
 import com.example.museummanagement.entity.ProfessionalFunction;
 import com.example.museummanagement.service.ProfessionalFunctionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/professional-function")
@@ -37,7 +38,8 @@ public class ProfessionalFunctionApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<ProfessionalFunction>> getAllProfessionalFunction() {
-        return new ResponseEntity<>(professionalFunctionService.getAllProfessionalFunction(), HttpStatus.OK);
+    public ResponseEntity<Page<ProfessionalFunction>> getAllProfessionalFunction(Pageable pageable,
+                                                                                 @RequestBody ProfessionalFunctionDTO professionalFunctionDTO) {
+        return new ResponseEntity<>(professionalFunctionService.findAllProfessionalFunction(pageable, professionalFunctionDTO), HttpStatus.OK);
     }
 }

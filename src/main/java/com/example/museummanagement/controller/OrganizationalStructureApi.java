@@ -1,9 +1,12 @@
 package com.example.museummanagement.controller;
 
+import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.OrganizationalStructureDTO;
 import com.example.museummanagement.entity.OrganizationalStructure;
 import com.example.museummanagement.service.OrganizationalStructureService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +40,9 @@ public class OrganizationalStructureApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<OrganizationalStructure>> getAllOrganizationalStructure() {
-        return new ResponseEntity<>(organizationalStructureService.getAllOrganizationalStructure(), HttpStatus.OK);
+    public ResponseEntity<Page<OrganizationalStructure>> getAllOrganizationalStructure(Pageable pageable,
+                                                                                       @RequestBody OrganizationalStructureDTO organizationalStructureDTO) {
+        return new ResponseEntity<>(organizationalStructureService.findAllOrganizationalStructure(pageable, organizationalStructureDTO), HttpStatus.OK);
     }
 
 

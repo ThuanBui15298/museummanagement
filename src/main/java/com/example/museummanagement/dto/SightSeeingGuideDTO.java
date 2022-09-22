@@ -15,4 +15,6 @@ public class SightSeeingGuideDTO {
     private String content;
 
     private  String author;
+
+    private String search;
 }

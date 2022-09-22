@@ -16,4 +16,6 @@ public class NationalTreasuresDTO {
 
     private  String author;
 
+    private  String search;
+
 }

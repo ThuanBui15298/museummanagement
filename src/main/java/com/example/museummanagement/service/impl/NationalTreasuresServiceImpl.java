@@ -7,8 +7,11 @@ import com.example.museummanagement.service.NationalTreasuresService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -77,14 +80,20 @@ public class NationalTreasuresServiceImpl implements NationalTreasuresService {
             throw new Exception("Can not found!");
         }
 
-        for (NationalTreasures nationalTreasures: nationalTreasuresList) {
+        for (NationalTreasures nationalTreasures : nationalTreasuresList) {
             nationalTreasures.setStatus(Constants.STATUS_INACTIVE);
             nationalTreasuresRepository.save(nationalTreasures);
         }
     }
 
     @Override
-    public List<NationalTreasures> getAllNationalTreasure() {
-        return nationalTreasuresRepository.findAll();
+    public Page<NationalTreasures> findAllNationalTreasures(Pageable pageable, NationalTreasuresDTO nationalTreasuresDTO) {
+        String search;
+        if (StringUtils.isEmpty(nationalTreasuresDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + nationalTreasuresDTO.getSearch().toLowerCase() + "%";
+        }
+        return nationalTreasuresRepository.findAllBySearch(pageable, search);
     }
 }

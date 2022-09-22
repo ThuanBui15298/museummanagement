@@ -4,11 +4,11 @@ import com.example.museummanagement.dto.ShowRegularlyDTO;
 import com.example.museummanagement.entity.ShowRegularly;
 import com.example.museummanagement.service.ShowRegularlyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/show-regularly")
@@ -36,8 +36,9 @@ public class ShowRegularlyApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<ShowRegularly>> getAllShowRegularly() {
-        return new ResponseEntity<>(showRegularlyService.getAllShowRegularly(),HttpStatus.OK);
+    public ResponseEntity<Page<ShowRegularly>> getAllShowRegularly(Pageable pageable,
+                                                                   @RequestBody ShowRegularlyDTO showRegularlyDTO) {
+        return new ResponseEntity<>(showRegularlyService.findAllShowRegularly(pageable, showRegularlyDTO),HttpStatus.OK);
     }
 
 }

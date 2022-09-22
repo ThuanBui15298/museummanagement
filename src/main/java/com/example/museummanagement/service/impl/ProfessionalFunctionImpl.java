@@ -7,9 +7,12 @@ import com.example.museummanagement.service.ProfessionalFunctionService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -76,7 +79,13 @@ public class ProfessionalFunctionImpl implements ProfessionalFunctionService {
     }
 
     @Override
-    public List<ProfessionalFunction> getAllProfessionalFunction() {
-        return professionalFunctionRepository.findAll();
+    public Page<ProfessionalFunction> findAllProfessionalFunction(Pageable pageable, ProfessionalFunctionDTO professionalFunctionDTO) {
+        String search;
+        if (StringUtils.isEmpty(professionalFunctionDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + professionalFunctionDTO.getSearch().toLowerCase() + "%";
+        }
+        return professionalFunctionRepository.findAllBySearch(pageable, search);
     }
 }

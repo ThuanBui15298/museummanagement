@@ -8,8 +8,11 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -28,7 +31,7 @@ public class PublicationTopicServiceImpl implements PublicationTopicService {
     public PublicationTopicDTO createPublicationTopic(PublicationTopicDTO publicationTopicDTO) {
         Optional<PublicationTopic> optionalPublicationTopic = publicationTopicRepository.findByName(publicationTopicDTO.getName());
         PublicationTopic publicationTopic = new PublicationTopic();
-        if (optionalPublicationTopic.isEmpty()){
+        if (optionalPublicationTopic.isEmpty()) {
             publicationTopic.setType(Constants.TYPE_PUBLICATION_TOPICS);
             publicationTopic.setName(publicationTopicDTO.getName());
             publicationTopic.setTitle(publicationTopicDTO.getTitle());
@@ -49,9 +52,9 @@ public class PublicationTopicServiceImpl implements PublicationTopicService {
     public PublicationTopicDTO updatePublicationTopic(PublicationTopicDTO publicationTopicDTO, Long id) {
         Optional<PublicationTopic> optionalPublicationTopic = publicationTopicRepository.findById(id);
         if (optionalPublicationTopic.isPresent()) {
-        PublicationTopic publicationTopic = optionalPublicationTopic.get();
+            PublicationTopic publicationTopic = optionalPublicationTopic.get();
             Optional<PublicationTopic> publicationTopics = publicationTopicRepository.findByName(publicationTopicDTO.getName());
-            if (publicationTopics.isEmpty() || publicationTopic.getId().equals(publicationTopics.get().getId())){
+            if (publicationTopics.isEmpty() || publicationTopic.getId().equals(publicationTopics.get().getId())) {
                 publicationTopic.setType(Constants.TYPE_PUBLICATION_TOPICS);
                 publicationTopic.setName(publicationTopicDTO.getName());
                 publicationTopic.setTitle(publicationTopicDTO.getTitle());
@@ -85,7 +88,13 @@ public class PublicationTopicServiceImpl implements PublicationTopicService {
     }
 
     @Override
-    public List<PublicationTopic> findAllPublicationTopic() {
-        return publicationTopicRepository.findAll();
+    public Page<PublicationTopic> findAllPublicationTopic(Pageable pageable, PublicationTopicDTO publicationTopicDTO) {
+        String search;
+        if (StringUtils.isEmpty(publicationTopicDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + publicationTopicDTO.getSearch().toLowerCase() + "%";
+        }
+        return publicationTopicRepository.findAllBySearch(pageable, search);
     }
 }

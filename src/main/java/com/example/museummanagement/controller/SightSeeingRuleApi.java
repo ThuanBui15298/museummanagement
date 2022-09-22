@@ -4,11 +4,12 @@ import com.example.museummanagement.dto.SightSeeingRuleDTO;
 import com.example.museummanagement.entity.SightSeeingRule;
 import com.example.museummanagement.service.SightSeeingRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("sightseeing-rule")
@@ -37,7 +38,8 @@ public class SightSeeingRuleApi {
     }
 
     @GetMapping("get-all")
-    public ResponseEntity<List<SightSeeingRule>> getAllSightSeeingRule() {
-        return new ResponseEntity<>(sightSeeingRuleService.getAllSightSeeingRule(), HttpStatus.OK);
+    public ResponseEntity<Page<SightSeeingRule>> getAllSightSeeingRule(Pageable pageable,
+                                                                       @RequestBody SightSeeingRuleDTO sightSeeingRuleDTO) {
+        return new ResponseEntity<>(sightSeeingRuleService.findAllSightSeeingRule(pageable, sightSeeingRuleDTO), HttpStatus.OK);
     }
 }

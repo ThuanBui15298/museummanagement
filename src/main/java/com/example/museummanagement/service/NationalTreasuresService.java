@@ -2,10 +2,11 @@ package com.example.museummanagement.service;
 
 import com.example.museummanagement.dto.NationalTreasuresDTO;
 import com.example.museummanagement.entity.NationalTreasures;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 public interface NationalTreasuresService {
@@ -17,5 +18,5 @@ public interface NationalTreasuresService {
 
     void deleteNationalTreasure(Long id);
 
-    List<NationalTreasures> getAllNationalTreasure();
+    Page<NationalTreasures> findAllNationalTreasures(Pageable pageable, NationalTreasuresDTO nationalTreasuresDTO);
 }

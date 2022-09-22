@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class SightSeeingRuleDTO {
+
     private Integer type;
 
     private  String name;
@@ -11,4 +12,6 @@ public class SightSeeingRuleDTO {
     private  String title;
 
     private String content;
+
+    private  String search;
 }

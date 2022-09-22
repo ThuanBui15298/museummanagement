@@ -1,5 +1,6 @@
 package com.example.museummanagement.service.impl;
 
+import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.OrganizationalStructureDTO;
 import com.example.museummanagement.entity.OrganizationalStructure;
 import com.example.museummanagement.repository.OrganizationalStructureRepository;
@@ -8,8 +9,11 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 
 import javax.transaction.Transactional;
@@ -82,8 +86,14 @@ public class OrganizationalStructureServiceImpl implements OrganizationalStructu
     }
 
     @Override
-    public List<OrganizationalStructure> getAllOrganizationalStructure() {
-        return organizationalStructureRepository.findAll();
+    public Page<OrganizationalStructure> findAllOrganizationalStructure(Pageable pageable, OrganizationalStructureDTO organizationalStructureDTO) {
+        String search;
+        if (StringUtils.isEmpty(organizationalStructureDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + organizationalStructureDTO.getSearch().toLowerCase() + "%";
+        }
+        return organizationalStructureRepository.findAllBySearch(pageable, search);
     }
 
 

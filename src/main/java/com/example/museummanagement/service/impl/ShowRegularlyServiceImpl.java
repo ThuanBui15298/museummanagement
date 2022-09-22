@@ -8,9 +8,12 @@ import com.example.museummanagement.ulti.Constants;
 import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -86,7 +89,13 @@ public class ShowRegularlyServiceImpl implements ShowRegularlyService {
     }
 
     @Override
-    public List<ShowRegularly> getAllShowRegularly() {
-        return showRegularlyRepository.findAll();
+    public Page<ShowRegularly> findAllShowRegularly(Pageable pageable, ShowRegularlyDTO showRegularlyDTO) {
+        String search;
+        if (StringUtils.isEmpty(showRegularlyDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + showRegularlyDTO.getSearch().toLowerCase() + "%";
+        }
+        return showRegularlyRepository.findAllBySearch(pageable, search);
     }
 }

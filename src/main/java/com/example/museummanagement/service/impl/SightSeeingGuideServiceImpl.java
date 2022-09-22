@@ -7,8 +7,11 @@ import com.example.museummanagement.service.SightSeeingGuideService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,7 +82,13 @@ public class SightSeeingGuideServiceImpl implements SightSeeingGuideService {
     }
 
     @Override
-    public List<SightSeeingGuide> getAllSightSeeingGuide() {
-        return sightSeeingGuideRepository.findAll();
+    public Page<SightSeeingGuide> findAllSightSeeingGuide(Pageable pageable, SightSeeingGuideDTO sightSeeingGuideDTO) {
+        String search;
+        if (StringUtils.isEmpty(sightSeeingGuideDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + sightSeeingGuideDTO.getSearch().toLowerCase() + "%";
+        }
+        return sightSeeingGuideRepository.findAllBySearch(pageable, search);
     }
 }

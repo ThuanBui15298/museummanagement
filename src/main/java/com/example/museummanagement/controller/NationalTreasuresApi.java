@@ -4,11 +4,11 @@ import com.example.museummanagement.dto.NationalTreasuresDTO;
 import com.example.museummanagement.entity.NationalTreasures;
 import com.example.museummanagement.service.NationalTreasuresService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/national-treasures")
@@ -37,7 +37,8 @@ public class NationalTreasuresApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<NationalTreasures>> getAllNationalTreasures() {
-        return new ResponseEntity<>(nationalTreasuresService.getAllNationalTreasure(), HttpStatus.OK);
+    public ResponseEntity<Page<NationalTreasures>> getAllNationalTreasures(Pageable pageable,
+                                                                           @RequestBody NationalTreasuresDTO nationalTreasuresDTO) {
+        return new ResponseEntity<>(nationalTreasuresService.findAllNationalTreasures(pageable, nationalTreasuresDTO), HttpStatus.OK);
     }
 }

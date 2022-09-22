@@ -1,9 +1,12 @@
 package com.example.museummanagement.controller;
 
+import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.PublicationTopicDTO;
 import com.example.museummanagement.entity.PublicationTopic;
 import com.example.museummanagement.service.PublicationTopicService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +41,8 @@ public class PublicationTopicApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Iterable<PublicationTopic>> getAllPublicationTopic() {
-        return new ResponseEntity<>(publicationTopicService.findAllPublicationTopic(), HttpStatus.OK);
+    public ResponseEntity<Page<PublicationTopic>> getAllPublicationTopic(Pageable pageable,
+                                                                         @RequestBody PublicationTopicDTO publicationTopicDTO) {
+        return new ResponseEntity<>(publicationTopicService.findAllPublicationTopic(pageable, publicationTopicDTO), HttpStatus.OK);
     }
 }

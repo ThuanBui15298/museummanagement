@@ -19,4 +19,6 @@ public class UpcomingEventsDTO {
 
     private String author;
 
+    private String search;
+
 }

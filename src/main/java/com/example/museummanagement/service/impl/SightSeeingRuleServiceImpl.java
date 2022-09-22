@@ -7,8 +7,11 @@ import com.example.museummanagement.service.SightSeeingRuleService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -78,7 +81,13 @@ public class SightSeeingRuleServiceImpl implements SightSeeingRuleService {
     }
 
     @Override
-    public List<SightSeeingRule> getAllSightSeeingRule() {
-        return sightSeeingRuleRepository.findAll();
+    public Page<SightSeeingRule> findAllSightSeeingRule(Pageable pageable, SightSeeingRuleDTO sightSeeingRuleDTO) {
+        String search;
+        if (StringUtils.isEmpty(sightSeeingRuleDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + sightSeeingRuleDTO.getSearch().toLowerCase() + "%";
+        }
+        return sightSeeingRuleRepository.findAllBySearch(pageable, search);
     }
 }
