@@ -4,6 +4,8 @@ import com.example.museummanagement.dto.ItinerantDisplayDTO;
 import com.example.museummanagement.entity.ItinerantDisplay;
 import com.example.museummanagement.service.ItinerantDisplayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +39,8 @@ public class ItinerantDisplayApi {
     }
 
     @GetMapping("/get-all")
-    public List<ItinerantDisplay> getAllItinerantDisplay() {
-        return itinerantDisplayService.getAllItinerantDisplay();
+    public ResponseEntity<Page<ItinerantDisplay>> getAllItinerantDisplay(Pageable pageable,
+                                                                         @RequestBody ItinerantDisplayDTO itinerantDisplayDTO) {
+        return new ResponseEntity<>(itinerantDisplayService.getAllItinerantDisplay(pageable, itinerantDisplayDTO), HttpStatus.OK);
     }
 }

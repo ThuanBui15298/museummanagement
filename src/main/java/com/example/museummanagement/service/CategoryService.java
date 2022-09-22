@@ -4,6 +4,7 @@ import com.example.museummanagement.dto.CategoryDTO;
 import com.example.museummanagement.entity.Category;
 
 import javax.transaction.Transactional;
+import java.util.Map;
 
 
 public interface CategoryService {
@@ -14,7 +15,7 @@ public interface CategoryService {
     @Transactional
     CategoryDTO updateCategory(CategoryDTO categoryDTO, Long id)  ;
 
-    void deleteCategory(Long id) ;
+    Map<String, Object> deleteCategory(Long id) ;
 
     Iterable<Category> findAll();
 

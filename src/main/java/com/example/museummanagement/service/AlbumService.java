@@ -1,6 +1,9 @@
 package com.example.museummanagement.service;
 
+import com.example.museummanagement.dto.AlbumDTO;
 import com.example.museummanagement.entity.Album;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,5 +20,5 @@ public interface AlbumService {
 
     Map<String, Object> deleteAlbum(Long id);
 
-    List<Album> getALlAlbum();
+    Page<Album> getAllAlbum(Pageable pageable, AlbumDTO albumDTO);
 }

@@ -1,5 +1,6 @@
 package com.example.museummanagement.service.impl;
 
+import com.example.museummanagement.dto.AlbumDTO;
 import com.example.museummanagement.entity.Album;
 import com.example.museummanagement.entity.Media;
 import com.example.museummanagement.repository.AlbumRepository;
@@ -8,9 +9,12 @@ import com.example.museummanagement.service.AlbumService;
 import com.example.museummanagement.ulti.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -93,8 +97,14 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public List<Album> getALlAlbum() {
-        return albumRepository.findAll();
+    public Page<Album> getAllAlbum(Pageable pageable, AlbumDTO albumDTO) {
+        String search;
+        if (StringUtils.isEmpty(albumDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + albumDTO.getSearch().toLowerCase() + "%";
+        }
+        return albumRepository.findBySearch(pageable, search);
     }
 
 }

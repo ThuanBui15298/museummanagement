@@ -22,5 +22,4 @@ public class Album extends BaseTimeModel{
 
     @Column(name = "slug")
     private String slug;
-
 }
