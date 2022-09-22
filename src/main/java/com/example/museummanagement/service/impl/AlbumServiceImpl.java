@@ -33,12 +33,12 @@ public class AlbumServiceImpl implements AlbumService {
     @Transactional
     public Album createAlbum(Album album) {
         Optional<Album> optional = albumRepository.findByName(album.getName());
-        Album album1 = new Album();
-        if (!optional.isPresent()) {
-            album1.setName(album.getName());
-            album1.setSlug(album.getSlug());
-            album1.setStatus(Constants.STATUS_ACTIVE);
-            albumRepository.save(album1);
+        Album albums = new Album();
+        if (optional.isEmpty()) {
+            albums.setName(album.getName());
+            albums.setSlug(album.getSlug());
+            albums.setStatus(Constants.STATUS_ACTIVE);
+            albumRepository.save(albums);
         } else {
             throw new Exception("Name existed!");
         }
@@ -51,14 +51,13 @@ public class AlbumServiceImpl implements AlbumService {
     public Album updateAlbum(Album album, Long id) {
         Optional<Album> optional = albumRepository.findById(id);
         if (optional.isPresent()) {
-            Album album1 = optional.get();
-
-            Optional<Album> optional1 = albumRepository.findByName(album.getName());
-            if (optional1.isEmpty() || album1.getId().equals(optional1.get().getId())) {
-                album1.setName(album.getName());
-                album1.setSlug(album.getSlug());
-                album1.setStatus(Constants.STATUS_ACTIVE);
-                albumRepository.save(album1);
+            Album albums = optional.get();
+            Optional<Album> optionalAlbum = albumRepository.findByName(album.getName());
+            if (optionalAlbum.isEmpty() || albums.getId().equals(optionalAlbum.get().getId())) {
+                albums.setName(album.getName());
+                albums.setSlug(album.getSlug());
+                albums.setStatus(Constants.STATUS_ACTIVE);
+                albumRepository.save(albums);
             } else {
                 throw new Exception("Name existed!");
             }
