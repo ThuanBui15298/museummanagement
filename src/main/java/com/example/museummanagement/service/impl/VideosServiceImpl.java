@@ -45,7 +45,7 @@ public class VideosServiceImpl implements VideosService {
     @SneakyThrows
     @Transactional
     @Override
-    public Videos upadateVideo(Videos video, Long id) {
+    public Videos updateVideo(Videos video, Long id) {
         Optional<Videos> optionalVideos = videosRepository.findById(id);
         if (optionalVideos.isPresent()) {
             Videos videos = optionalVideos.get();

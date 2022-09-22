@@ -11,7 +11,7 @@ public interface VideosService {
 
     Videos createVideo(Videos video);
 
-    Videos upadateVideo(Videos video, Long id);
+    Videos updateVideo(Videos video, Long id);
 
     Map<String, Object> deleteVideo(Long id);
 
