@@ -1,6 +1,5 @@
 package com.example.museummanagement.repository;
 
-import com.example.museummanagement.entity.FeaturedNews;
 import com.example.museummanagement.entity.TypicalArtifacts;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
