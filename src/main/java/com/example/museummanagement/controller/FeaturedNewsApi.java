@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class FeaturedNewsApi {
 
-
     private final FeaturedNewsService featuredNewsService;
 
     @PostMapping(value = "/create")
