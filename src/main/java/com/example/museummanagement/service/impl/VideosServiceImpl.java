@@ -22,8 +22,8 @@ public class VideosServiceImpl implements VideosService {
     private final VideosRepository videosRepository;
 
     public static final String  VIDEO_MEDIA = "Video";
-    @Autowired
-    private MediaRepository mediaRepository;
+
+    private final MediaRepository mediaRepository;
 
     @SneakyThrows
     @Transactional
