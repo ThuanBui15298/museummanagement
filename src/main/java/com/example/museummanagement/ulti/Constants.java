@@ -24,6 +24,7 @@ public class Constants {
     public static final Integer TYPE_NATIONAL_TREASURES = 10;
     public static final Integer TYPE_COLLECTIONS = 11;
     public static final Integer TYPE_EDUCATIONAL_ACTIVITIES = 12;
+    public static final Integer TYPE_TYPICAL_ARTIFACTS= 13;
 
     public static final Integer TYPE_OPEN_TIME= 0;
     public static final Integer TYPE_SIGHTSEEING_RULE = 1;
@@ -31,7 +32,7 @@ public class Constants {
     public static final Integer TYPE_GENERAL_INTRODUCTION= 3;
     public static final Integer TYPE_ORGANIZATIONAL_STRUCTURE= 4;
     public static final Integer TYPE_PROFESSIONAL_FUNCTION= 5;
-    public static final Integer TYPE_TYPICAL_ARTIFACTS= 6;
+
 
 
 

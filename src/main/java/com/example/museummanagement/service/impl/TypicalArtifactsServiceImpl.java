@@ -1,23 +1,29 @@
 package com.example.museummanagement.service.impl;
 
+import com.example.museummanagement.dto.FeaturedNewsDTO;
+import com.example.museummanagement.dto.TypicalArtifactsDTO;
+import com.example.museummanagement.entity.FeaturedNews;
 import com.example.museummanagement.entity.TypicalArtifacts;
 import com.example.museummanagement.repository.TypicalArtifactsRepository;
 import com.example.museummanagement.service.TypicalArtifactsService;
 import com.example.museummanagement.ulti.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class TypicalArtifactsServiceImpl implements TypicalArtifactsService {
 
-    @Autowired
-    private TypicalArtifactsRepository typicalArtifactsRepository;
+    private final TypicalArtifactsRepository typicalArtifactsRepository;
 
     @SneakyThrows
     @Transactional
@@ -29,6 +35,8 @@ public class TypicalArtifactsServiceImpl implements TypicalArtifactsService {
             typicalArtifact.setName(typicalArtifacts.getName());
             typicalArtifact.setTitle(typicalArtifacts.getTitle());
             typicalArtifact.setContent(typicalArtifacts.getContent());
+            typicalArtifact.setSlug(typicalArtifacts.getSlug());
+            typicalArtifact.setAuthor(typicalArtifacts.getAuthor());
             typicalArtifact.setStatus(Constants.STATUS_ACTIVE);
             typicalArtifact.setType(Constants.TYPE_TYPICAL_ARTIFACTS);
             typicalArtifactsRepository.save(typicalArtifact);
@@ -50,6 +58,8 @@ public class TypicalArtifactsServiceImpl implements TypicalArtifactsService {
                 typicalArtifact.setName(typicalArtifacts.getName());
                 typicalArtifact.setTitle(typicalArtifacts.getTitle());
                 typicalArtifact.setContent(typicalArtifacts.getContent());
+                typicalArtifact.setSlug(typicalArtifacts.getSlug());
+                typicalArtifact.setAuthor(typicalArtifacts.getAuthor());
                 typicalArtifact.setStatus(Constants.STATUS_ACTIVE);
                 typicalArtifact.setType(Constants.TYPE_TYPICAL_ARTIFACTS);
                 typicalArtifactsRepository.save(typicalArtifact);
@@ -77,7 +87,13 @@ public class TypicalArtifactsServiceImpl implements TypicalArtifactsService {
     }
 
     @Override
-    public List<TypicalArtifacts> getAllTypicalArtifacts() {
-        return typicalArtifactsRepository.findAll();
+    public Page<TypicalArtifacts> findAllTypicalArtifacts(Pageable pageable, TypicalArtifactsDTO typicalArtifactsDTO) {
+        String search;
+        if (StringUtils.isEmpty(typicalArtifactsDTO.getSearch())) {
+            search = "%%";
+        } else {
+            search = "%" + typicalArtifactsDTO.getSearch().toLowerCase() + "%";
+        }
+        return typicalArtifactsRepository.findAllBySearch(pageable, search);
     }
 }

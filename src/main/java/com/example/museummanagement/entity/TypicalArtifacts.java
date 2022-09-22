@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "synthetic")
+@Table(name = "news")
 public class TypicalArtifacts extends BaseTimeModel{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,11 +14,15 @@ public class TypicalArtifacts extends BaseTimeModel{
 
     private Integer type;
 
-    private  String name;
+    private String name;
 
-    private  String title;
+    private String title;
+
+    private String slug;
 
     private String content;
 
     private Long categoryDetailId;
+
+    private  String author;
 }

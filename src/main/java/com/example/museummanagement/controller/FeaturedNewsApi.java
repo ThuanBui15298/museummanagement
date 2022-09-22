@@ -44,4 +44,5 @@ public class FeaturedNewsApi {
                                                                  @RequestBody FeaturedNewsDTO featuredNewsDTO) {
         return new ResponseEntity<>(featuredNewsService.findAllFeaturedNews(pageable, featuredNewsDTO), HttpStatus.OK);
     }
+
 }
