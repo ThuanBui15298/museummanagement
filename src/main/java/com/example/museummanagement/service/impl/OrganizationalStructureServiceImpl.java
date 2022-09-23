@@ -1,6 +1,5 @@
 package com.example.museummanagement.service.impl;
 
-import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.OrganizationalStructureDTO;
 import com.example.museummanagement.entity.OrganizationalStructure;
 import com.example.museummanagement.repository.OrganizationalStructureRepository;
