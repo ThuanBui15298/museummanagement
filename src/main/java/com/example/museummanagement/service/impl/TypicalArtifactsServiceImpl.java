@@ -1,8 +1,6 @@
 package com.example.museummanagement.service.impl;
 
-import com.example.museummanagement.dto.FeaturedNewsDTO;
-import com.example.museummanagement.dto.TypicalArtifactsDTO;
-import com.example.museummanagement.entity.FeaturedNews;
+import com.example.museummanagement.dto.TypicalArtifactsDTO;    
 import com.example.museummanagement.entity.TypicalArtifacts;
 import com.example.museummanagement.repository.TypicalArtifactsRepository;
 import com.example.museummanagement.service.TypicalArtifactsService;

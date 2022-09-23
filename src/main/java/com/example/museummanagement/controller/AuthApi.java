@@ -5,7 +5,7 @@ import com.example.museummanagement.auth.LoginRequest;
 import com.example.museummanagement.auth.LoginResponse;
 import com.example.museummanagement.auth.SignUpDto;
 import com.example.museummanagement.config.JwtTokenProvider;
-import com.example.museummanagement.service.impl.UserService;
+import com.example.museummanagement.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class AuthApi {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private JwtTokenProvider tokenProvider;
@@ -49,7 +49,7 @@ public class AuthApi {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto){
         try {
-            userService.registerUser(signUpDto);
+            userServiceImpl.registerUser(signUpDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
