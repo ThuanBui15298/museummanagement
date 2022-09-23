@@ -20,6 +20,6 @@ public interface ProfessionalFunctionRepository extends JpaRepository<Profession
 
     List<ProfessionalFunction> findAllByIdAndStatus(Long id, Integer status);
 
-    @Query(value = "select * from synthetic s where s.status = 1 and s.type = 5 and lower(concat(coalesce(n.name,''), coalesce(n.title ,''))) like lower(:search)", nativeQuery = true)
+    @Query(value = "select * from synthetic s where s.status = 1 and s.type = 5 and lower(concat(coalesce(s.name,''), coalesce(s.title ,''))) like lower(:search)", nativeQuery = true)
     Page<ProfessionalFunction> findAllBySearch(Pageable pageable, @Param("search") String search);
 }

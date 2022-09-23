@@ -16,7 +16,7 @@ public interface OrganizationalStructureRepository extends JpaRepository<Organiz
 
     List<OrganizationalStructure> findAllByIdAndStatus(Long id, Integer status);
 
-    @Query(value = "select * from synthetic s where s.status = 1 and s.type = 4 and lower(concat(coalesce(n.name,''), coalesce(n.title ,''))) like lower(:search)", nativeQuery = true)
+    @Query(value = "select * from synthetic s where s.status = 1 and s.type = 4 and lower(concat(coalesce(s.name,''), coalesce(s.title ,''))) like lower(:search)", nativeQuery = true)
     Page<OrganizationalStructure> findAllBySearch(Pageable pageable, @Param("search") String search);
 
 }

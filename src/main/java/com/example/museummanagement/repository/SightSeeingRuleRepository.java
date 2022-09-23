@@ -20,7 +20,7 @@ public interface SightSeeingRuleRepository extends JpaRepository<SightSeeingRule
 
     List<SightSeeingRule> findAllByIdAndStatus(Long id, Integer status);
 
-    @Query(value = "select * from synthetic s where s.status = 1 and s.type = 1 and lower(concat(coalesce(n.name,''), coalesce(n.title ,''))) like lower(:search)", nativeQuery = true)
+    @Query(value = "select * from synthetic s where s.status = 1 and s.type = 1 and lower(concat(coalesce(s.name,''), coalesce(s.title ,''))) like lower(:search)", nativeQuery = true)
     Page<SightSeeingRule> findAllBySearch(Pageable pageable, @Param("search") String search);
 
 }

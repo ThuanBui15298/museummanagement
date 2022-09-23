@@ -81,7 +81,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<CategoryDetail> categoryDetailList = categoryDetailRepository.findByCategoryIdAndStatus();
         if (CollectionUtils.isEmpty(categoryDetailList)) {
-            throw new MessageDescriptorFormatException("Can not found!");
+            throw new MessageDescriptorFormatException("Category detail can not found!");
         }
         for (CategoryDetail categoryDetail: categoryDetailList) {
             categoryDetail.setStatus(Constants.STATUS_INACTIVE);
