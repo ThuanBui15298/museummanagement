@@ -42,7 +42,6 @@ public class MediaServiceImpl implements MediaService {
         Optional<Media> media = mediaRepository.findById(id);
         if (media.isPresent()) {
             Media med = media.get();
-
             med.setLink(mediaDTO.getLink());
             med.setObjectType(mediaDTO.getObjectType());
             med.setType(mediaDTO.getType());

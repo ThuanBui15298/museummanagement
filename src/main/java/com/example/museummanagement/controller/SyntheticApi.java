@@ -13,7 +13,6 @@ import java.util.List;
 @RequestMapping("/synthetic")
 public class SyntheticApi {
 
-
     @Autowired
     private SyntheticService syntheticService;
 

@@ -50,7 +50,11 @@ public class SyntheticServiceImpl implements SyntheticService {
             Synthetic sy = optionalSynthetic.get();
 
             Optional<Synthetic> optional = syntheticRepository.findByName(synthetic.getName());
-            if (optional.isEmpty() || sy.getId().equals(optional.get().getId())){
+            if (optional.isEmpty()
+                    // so sánh 2 id với nhau nếu trùng thì bỏ qua
+                    || sy.getId().equals(optional.get().getId())
+                    // check name k dc nhỏ hơn hoặc bằng 0 kí tự
+                    || optional.get().getName().length()>0){
                 sy.setType(synthetic.getType());
                 sy.setName(synthetic.getName());
                 sy.setTitle(synthetic.getTitle());

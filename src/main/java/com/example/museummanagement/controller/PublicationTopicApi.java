@@ -1,6 +1,5 @@
 package com.example.museummanagement.controller;
 
-import com.example.museummanagement.dto.FeaturedNewsDTO;
 import com.example.museummanagement.dto.PublicationTopicDTO;
 import com.example.museummanagement.entity.PublicationTopic;
 import com.example.museummanagement.service.PublicationTopicService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/publication-topic")
 @RequiredArgsConstructor
 public class PublicationTopicApi {
-
 
     private final PublicationTopicService publicationTopicService;
 
